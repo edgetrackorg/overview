@@ -13,6 +13,5 @@ The following topics are **not yet included** in the current `overview` reposito
 * [nir-illumination.md](https://github.com/edgetrackorg/overview/blob/main/docs/nir-illumination.md)
 * [distributed-fusion.md](https://github.com/edgetrackorg/overview/blob/main/docs/distributed-fusion.md)
 * [deterministic-pipeline.md](https://github.com/edgetrackorg/overview/blob/main/docs/deterministic-pipeline.md)
-* [deterministic-pipeline.md](https://github.com/edgetrackorg/overview/blob/main/docs/deterministic-pipeline.md)
 * [design-principles.md](https://github.com/edgetrackorg/overview/blob/main/docs/design-principles.md)
 
