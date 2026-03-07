@@ -19,6 +19,7 @@ The architecture can be applied to gesture interaction, 3D keypoint extraction, 
 | **Infrared**                 | Technical guide to controlled IR illumination: LED/VCSEL selection, driver design, optical filtering (bandpass, polarization), synchronization, and impact on stereo matching stability.                                | Apache-2.0     | [Infrared](./docs/infrared.md)                            |
 | **LuxMeter**                 | Practical IR illumination sizing guide without a physical luxmeter: estimate required LED power using RAW10 intensity levels (paper target + fixed camera settings).                                                    | Apache-2.0     | [LuxMeter](./docs/luxmeter.md)                            |
 | **GeoRules**                 | Practical stereo geometry reference: baseline vs. distance, disparity range planning, accuracy estimation, and CPU workload considerations.                                                                             | Apache-2.0     | [Vision Geometry Rules](./docs/geo_rules.md)              |
+| **Redundancy**               | Notes on documentation overlap across GitHub repositories, including related concepts already published elsewhere and topics not yet included in the current overview repository.                                       | Apache-2.0     | [Redundancy](./docs/redundancy.md)                        |
 
 ---
 
