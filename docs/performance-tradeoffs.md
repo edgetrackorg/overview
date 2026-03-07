@@ -221,7 +221,7 @@ This introduces artifacts that significantly reduce reconstruction accuracy.
 | AI-inferred depth                   | **Metric stereo geometry**          |
 | Vendor lock-in                      | **Open architecture**               |
 
-Additional comparison tables are available in [Comparison Tables](./docs/comparison_table.md).
+Additional comparison tables are available in [Comparison Tables](https://github.com/edgetrackorg/overview/blob/main/docs/comparison_table.md).
 
 ---
 
