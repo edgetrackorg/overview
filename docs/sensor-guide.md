@@ -79,7 +79,7 @@ for 3D Hand-Tracking Reconstruction
     * rig geometry,
     * working distance,
     * desired measurement volume (e.g., hand vs. full upper body).
-  * For detailed formulas and examples, see: **[Vision Geometry Rules](https://github.com/xtanai/geo_rules)**.
+  * For detailed formulas and examples, see: **[Vision Geometry Rules](./docs/geo_rules.md)**.
 
 ---
 
