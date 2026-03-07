@@ -168,7 +168,7 @@ The system is released under open licenses to encourage experimentation, modific
 
 ---
 
-## Architecture and Design
+## Design and Features
 
 ### 1. Clear Separation of Capture and Processing
 
