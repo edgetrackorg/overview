@@ -69,12 +69,7 @@ In EdgeTrack, AI models act as **assistive layers**, not as the measurement foun
 | **Occlusion handling**     | Solved via multi-view geometry  | Improved with fusion                 | Must infer hidden geometry        |
 | **Interpretability**       | Physical measurement            | Hybrid                               | Statistical estimate              |
 
-\* In controlled indoor setups (no direct sunlight, minimal glare, stable NIR illumination), stereo performs extremely well.
-Failure modes typically appear on:
-
-* Very low-texture materials
-* Strong specular reflections
-* Severe occlusions
+\* In controlled indoor environments with stable NIR illumination, minimal glare, and no direct sunlight, stereo performs very well. Typical failure modes mainly occur on very low-texture materials, strong specular reflections, and severe occlusions. In such cases, polarization can be used as an additional optical countermeasure.
 
 EdgeTrack addresses these primarily through **optics and geometry**, not neural compensation.
 
@@ -124,7 +119,9 @@ This question cannot be answered by pixel count alone. In stereo vision, the pri
 
 Equally important is the **targeted optimization of the processing pipeline**.
 
-To make these relationships more tangible, I created a simple HTML tool for stereo calculation. It visualizes the relationships between baseline, working distance, disparity, and compute budget using clear diagrams. The default values are chosen to be practical and aligned with the typical EdgeTrack use case.
+To make these relationships more tangible, I created a simple HTML-based stereo calculator. It visualizes the relationship between baseline, working distance, disparity, and compute budget through clear diagrams. The default parameters are chosen to be practical and representative of the typical EdgeTrack use case.
+
+The calculator is available here: [Disparity Calc](https://edgetrack.org/disparity-calc)
 
 > Note: The tool focuses on **geometric and computational factors only**. Optical effects such as NIR bandpass filtering, polarization, sensor behavior, and contrast characteristics are not included, even though they also strongly influence reconstruction stability.
 
