@@ -221,7 +221,7 @@ This introduces artifacts that significantly reduce reconstruction accuracy.
 | AI-inferred depth                   | **Metric stereo geometry**          |
 | Vendor lock-in                      | **Open architecture**               |
 
-Additional comparison tables are available in **comparison_table.md**.
+Additional comparison tables are available in [Comparison Tables](./docs/comparison_table.md).
 
 ---
 
@@ -241,19 +241,32 @@ EdgeTrack leverages this flexibility through:
 
 This can dramatically reduce compute cost while improving determinism and reproducibility.
 
-| Feature                | CPU (Pi 5)      | CPU (Threadripper) | VPU        |
-| ---------------------- | --------------- | ------------------ | ---------- |
-| Dense depth efficiency | ⚠️ Medium       | 🚀 Very High       | ✅ High     |
-| 720p @ 30 FPS          | ⚠️ Borderline   | ✅ Stable           | ✅ Stable   |
-| 120 FPS dense          | ❌ Not practical | ⚠️ Possible        | ❌ Rare     |
-| ROI processing         | ✅ Excellent     | ✅ Excellent        | ⚠️ Limited |
-| Pipeline control       | ✅ Full          | ✅ Full             | ⚠️ Limited |
-| Multi-rig sync         | ✅ Ideal         | ⚠️ Complex         | ⚠️ Limited |
+| Feature                | CPU (Pi 5)       | CPU (Threadripper) | GPU (Host-side) | VPU (On-device) |
+| ---------------------- | ---------------- | ------------------ | ---------------- | --------------- |
+| Dense depth efficiency | ⚠️ Medium        | 🚀 Very High       | 🚀 Very High     | ✅ High         |
+| 720p @ 30 FPS          | ⚠️ Borderline    | ✅ Stable          | ✅ Stable        | ✅ Stable       |
+| 120 FPS dense          | ❌ Not practical | ⚠️ Possible        | ⚠️ Possible      | ❌ Rare         |
+| ROI processing         | ✅ Excellent     | ✅ Excellent       | ✅ Strong        | ⚠️ Limited      |
+| Pipeline control       | ✅ Full          | ✅ Full            | ✅ High          | ⚠️ Limited      |
+| Multi-rig sync         | ✅ Ideal         | ⚠️ Complex         | ⚠️ Host-dependent| ⚠️ Limited      |
 
 **Summary**
 
-* **VPU** → best for simple dense depth output
-* **CPU + RAW pipeline** → best for controlled multi-rig geometry
+* **VPU** → ideal for simple on-device dense depth
+* **GPU** → strong acceleration for large-scale host processing
+* **CPU + RAW pipeline** → ideal for deterministic, controllable multi-rig stereo systems
+
+---
+
+## Do We Use Jetson?
+
+Yes, potentially — but not as the primary baseline.
+
+Jetson provides significant compute performance, but it also moves the system toward a higher-cost, higher-power, and more GPU-centric architecture. EdgeTrack is deliberately designed around deterministic capture, strict timing control, and a RAW-first pipeline on affordable hardware.
+
+In many existing Jetson-based camera workflows, H.264/H.265 transport is commonly used for convenience and bandwidth reduction. By contrast, fully controlled RAW-first pipelines are often less mature or less straightforward in the context of deterministic stereo capture and multi-rig synchronization.
+
+Jetson support may be introduced later for more demanding processing modes, but it is not the baseline target for the first stable release.
 
 ---
 
@@ -289,13 +302,13 @@ For this reason EdgeTrack deliberately avoids **H.265 pipelines** and focuses on
 
 ### Pixel Format Comparison
 
-| Format        | Rating | Comment                        |
-| ------------- | ------ | ------------------------------ |
-| MJPEG / H.265 | ⭐☆☆☆☆  | Preview/debug only             |
-| YUV / YUYV    | ⭐⭐☆☆☆  | Only useful if using Y channel |
-| RAW8          | ⭐⭐⭐☆☆  | Good baseline                  |
-| RAW10         | ⭐⭐⭐⭐☆  | Excellent balance              |
-| RAW12         | ⭐⭐⭐⭐⭐  | Highest precision              |
+| Format        | Rating       | Comment                        |
+| ------------- | ------------ | ------------------------------ |
+| MJPEG / H.265 | ⭐☆☆☆☆       | Preview/debug only             |
+| YUV / YUYV    | ⭐⭐☆☆☆      | Only useful if using Y channel |
+| RAW8          | ⭐⭐⭐☆☆     | Good baseline                  |
+| RAW10         | ⭐⭐⭐⭐☆    | Excellent balance              |
+| RAW12         | ⭐⭐⭐⭐⭐   | Highest precision              |
 
 ---
 
