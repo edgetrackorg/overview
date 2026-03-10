@@ -81,13 +81,17 @@ EdgeTrack is based on several architectural principles.
 
 ### RAW-first capture
 
-Image data is captured directly from stereo sensors without ISP post-processing or compression. This preserves the full temporal and spatial information from the sensor and avoids hidden processing stages that could introduce latency, artifacts, or unpredictable behavior.
+Image data is acquired in RAW form directly from the stereo sensors and processed in a controlled software pipeline, avoiding unnecessary ISP intervention and compression wherever possible. This architecture is intended to maintain temporal consistency, reduce avoidable latency, and provide deterministic control over the early image-processing stages.
 
-The processing concept focuses on controlled RAW pre-processing within an explicitly managed pipeline. This includes a zero-copy-oriented design wherever possible, primarily implemented in C and C++, with small performance-critical parts potentially implemented in assembly.
+The pipeline follows a zero-copy-oriented design where feasible and is implemented primarily in C and C++, with low-level optimization reserved for selected bottlenecks.
+
+See more in the architecture documentation: [Architektur Pipeline](https://github.com/edgetrackorg/edgetrack/blob/main/docs/architecture_pipeline.md)
 
 ### Precise timing
 
 Dedicated hardware synchronization ensures that all cameras operate with predictable and reproducible timing relationships. This makes it possible to correlate frames precisely across stereo pairs and across multiple rigs, which is essential for stable triangulation, fusion, and motion analysis. In configurations using active NIR illumination, synchronization becomes even more important, because exposure timing, strobe timing, and sensor readout can be coordinated in a controlled way. The architecture can also support phase-shifted operation between rigs, allowing different capture phases to be distributed over time. This can improve temporal sampling, reduce interference between illumination groups, and increase robustness for fast motion and multi-rig tracking scenarios.
+
+See more in the documentation: [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe)
 
 ### Modular stereo rigs
 
@@ -96,6 +100,8 @@ The architecture supports multiple independent stereo rigs distributed in space.
 ### Host-side fusion
 
 Instead of performing complex processing inside embedded camera hardware, EdgeTrack performs fusion and filtering on the host system. This enables more flexible algorithms, easier debugging, and scalable processing power.
+
+See more in the documentation: [CoreFusion](https://github.com/edgetrackorg/corefusion)
 
 ### Transparent processing pipeline
 
