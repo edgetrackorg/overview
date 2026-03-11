@@ -47,7 +47,7 @@ The architecture can be applied to gesture interaction, 3D keypoint extraction, 
 
 ---
 
-## 🧠 Layer 3 – AI Interpretation (Optional)
+## 🧠 Layer 3 – Motion Interpretation (Optional)
 
 **What this layer does:** It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
 
