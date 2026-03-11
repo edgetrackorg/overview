@@ -1,4 +1,4 @@
-# Overview – EdgeTrack
+# Overview – Multi-View Stereo Tracking System
 
 ## Description
 
