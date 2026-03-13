@@ -10,7 +10,7 @@
 | --------------------------------------------- | :--------------------: | :-----------------------: | :---------------------------------: | :------------------------: | :------------------------: | :--------------------------: | :---------------: | :--------------------------------: |
 | **Primary use case**                          |  Robotics / XR / Depth |       Depth sensing       |       Industrial stereo depth       |        Hand tracking       |     Marker-based MoCap     |    Industrial stereo depth   |   Depth sensing   | Editor authoring / pro interaction |
 | **Typical interface**                         |           USB          |            USB            |           5GigE (Ethernet)          |             USB            |   Ethernet (system-based)  | GigE / USB (model dependent) |        USB        |        Ethernet (multi-rig)        |
-| **Stereo depth**                              |           🟢           |             🟢            |                  🟢                 |             🔴             |             🔴             |              🟢              |         🟢        |                 🟢                 |
+| **Stereo depth**                              |           🟢           |             🟢            |                  🟢                 |           🔴***            |             🔴             |              🟢              |         🟢        |                 🟢                 |
 | **On-device depth compute**                   |  🔴 (host GPU typical) | 🟢 (dedicated depth ASIC) |   🟢 (on-board stereo processing)   |             🔴             |             🔴             |  🟢 (camera-based disparity) |  🟢 (custom ASIC) |     🟢 (ROI-based edge compute)    |
 | **AI/VPU-style accelerator**                  |           🔴           |  🔴 (depth ASIC ≠ AI VPU) |                  🔴                 |             🔴             |             🔴             |              🔴              |         🔴        |    Optional (platform-dependent)   |
 | **FPGA-based stereo pipeline**                |           🔴           |             🔴            |  🟢 (industrial hardware pipeline)  |             🔴             |             🔴             |              🔴              |         🔴        |                 🔴                 |
@@ -38,3 +38,5 @@ Extended ranges up to ~10 m are configuration-dependent and may require:
 
 Depth precision and usable range depend on baseline geometry, optics, illumination design, and processing strategy.
 For transparency, geometric performance relationships are documented separately via disparity-based calculation tools.
+
+\*** Leap Motion uses two cameras, but it is not a conventional stereo disparity system.
