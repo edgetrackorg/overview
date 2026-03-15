@@ -121,7 +121,7 @@ Equally important is the **targeted optimization of the processing pipeline**.
 
 To make these relationships more tangible, I created a simple HTML-based stereo calculator. It visualizes the relationship between baseline, working distance, disparity, and compute budget through clear diagrams. The default parameters are chosen to be practical and representative of the typical EdgeTrack use case.
 
-The calculator is available here: [Disparity Calc](https://edgetrack.org/disparity-calc)
+The calculator is available here: [Disparity Calc](https://xcnc.eu/sub/old/disparity/)
 
 > Note: The tool focuses on **geometric and computational factors only**. Optical effects such as NIR bandpass filtering, polarization, sensor behavior, and contrast characteristics are not included, even though they also strongly influence reconstruction stability.
 
