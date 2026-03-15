@@ -1,4 +1,4 @@
-# Trade-off: Haptics with Force Feedback
+# Limitations of Haptics
 
 Force-feedback haptics can be very attractive in theory and may appear ideal for 3D interaction.
 However, in practice they introduce **significant complexity, cost, and scalability limitations**.
