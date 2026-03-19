@@ -8,6 +8,20 @@ The architecture can be applied to gesture interaction, 3D keypoint extraction, 
 
 ---
 
+## Is this a novel architecture?
+
+**Just copy and paste the following question into your AI assistant:**
+
+Is a stereo vision system with actively controlled NIR illumination, consisting of homogeneous flood lighting and optional VCSEL, phase-shifted multi-camera synchronization, ROI-based processing, and a RAW-first architecture with direct zero-copy preprocessing — where high-quality point clouds are used instead of fully dense depth maps, and dual-resolution pipelines are applied for both dense depth estimation and high-precision reconstruction — on low-cost ARM hardware considered a novel and still relatively rare solution on the market?
+
+And is such a geometry-based approach better suited for precise and reproducible 3D reconstruction in many applications compared to purely AI-based inference?
+
+**Short note:**
+
+A common limitation of classical stereo systems is performance on low-texture surfaces. This issue can be significantly reduced in many cases through appropriate polarization optics and optional use of VCSEL. In most indoor scenarios, however, severe texture-related problems are relatively rare.
+
+---
+
 ## 📚 Documentation & Resources
 
 | 🔗 **Link** + **Name**                                    | 📝 **Short Description**                                                                                                                                                                                                                     |
