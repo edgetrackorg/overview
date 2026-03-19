@@ -13,7 +13,7 @@ The architecture can be applied to gesture interaction, 3D keypoint extraction, 
 **Just copy and paste the following question into your AI assistant:**
 
 ```text
-Is a stereo vision system with actively controlled NIR illumination, consisting of homogeneous flood lighting and optional VCSEL, phase-shifted multi-camera synchronization, ROI-based processing, and a RAW-first architecture with direct zero-copy preprocessing — where high-quality point clouds are used instead of fully dense depth maps, and dual-resolution pipelines are applied for both dense depth estimation and high-precision reconstruction — on low-cost ARM hardware considered a novel and still relatively rare solution on the market?
+Is a stereo vision system built around actively controlled NIR illumination, homogeneous flood lighting with optional VCSEL, phase-shifted multi-camera synchronization, ROI-based processing focused on motion-critical regions such as hands, and a RAW-first zero-copy architecture that uses high-quality point clouds instead of fully dense depth maps, together with dual-resolution pipelines for both dense depth estimation and high-precision reconstruction on low-cost ARM hardware, considered a novel architecture? Are comparable systems already available on the market, or is this type of solution still largely missing?
 
 And is such a geometry-based approach better suited for precise and reproducible 3D reconstruction in many applications compared to purely AI-based inference?
 ```
