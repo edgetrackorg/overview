@@ -69,13 +69,15 @@ If optional AI pipelines are enabled, it can additionally provide **H.265 previe
 
 ---
 
-### 📝 Note
+### 📝 Note: EdgeTrack vs EdgeTrack Pro
 
-**EdgeTrack is not a reduced or inferior solution.**
-It represents a **software-defined, geometry-first approach** designed for flexibility, experimentation, and rapid iteration.
+**EdgeTrack is not an inferior version of EdgeTrack Pro.**
+When properly configured, EdgeTrack already provides a practical and capable geometry-first solution for many applications.
 
-While FPGA-based systems (e.g., EdgeTrack Pro) can achieve **lower latency and higher determinism**,
-EdgeTrack provides a **practical and powerful foundation** for developing and validating perception pipelines.
+**EdgeTrack Pro** is a future FPGA-based variant focused on **lower latency**, **higher determinism**, and **stronger real-time performance**. It is intended as a specialized hardware option, not as a general replacement for EdgeTrack.
+
+At present, **EdgeTrack is the main directly usable solution**.
+**EdgeTrack Pro** is primarily a future internal development direction. See the comparison table below.
 
 **Architecture Comparison (Estimated)**
 
