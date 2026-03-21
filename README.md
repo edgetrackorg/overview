@@ -43,6 +43,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## Simple pipeline diagram
 
+```mermaid
 flowchart LR
     A[TDMStrobe<br/>Timing & Synchronization]
     B[EdgeTrack<br/>Image Capture]
@@ -56,6 +57,7 @@ flowchart LR
     C --> D
     D --> E
     E --> F
+```
 
 ---
 
