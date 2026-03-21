@@ -65,7 +65,7 @@ If optional AI pipelines are enabled, it can additionally provide **H.265 previe
 
 | 🧩 **Module**     | 📝 **Short Description**                                                                                                                                                               |  ⚖️ **License**                                   | 🚦 **Status** | 🔗 **Link** |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  ------------------------------------------------ | ------------- | ----------- |
-| **EdgeTrack Pro** | **RAW10 stereo capture and processing pipeline** on a custom FPGA platform, optimized for **ultra-low latency**, **high performance**, and **hardware-accelerated disparity matching** |  Commercial (planned, potentially partially open) | 🔴 Planned    | —           |
+| **EdgeTrack Pro** | **RAW10 stereo capture and processing pipeline** on a custom FPGA platform, optimized for **ultra-low latency**, **high performance**, and **hardware-accelerated disparity matching** |  Commercial (planned, potentially partially open) | 🔴 Later      | —           |
 
 ---
 
