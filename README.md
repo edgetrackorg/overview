@@ -45,9 +45,9 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ```mermaid
 flowchart LR
-    A[TDMStrobe<br/>Timing & Synchronization]
-    B[EdgeTrack<br/>Image Capture]
-    C[CoreStereo<br/>Optional Heavy Stereo Compute]
+    A[**TDMStrobe**<br/>Timing & Synchronization]
+    B[**EdgeTrack**<br/>Image Capture]
+    C[**CoreStereo**<br/>Optional Heavy Stereo Compute]
     D[CoreFusion<br/>Multi-Rig Fusion]
     E[Your Application<br/>Processed Output Consumer]
     F[MotionCoder<br/>Optional Gesture Interaction Layer]
