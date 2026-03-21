@@ -41,6 +41,24 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ---
 
+## Simple pipeline diagram
+
+flowchart LR
+    A[TDMStrobe<br/>Timing & Synchronization]
+    B[EdgeTrack<br/>Image Capture]
+    C[CoreStereo<br/>Optional Heavy Stereo Compute]
+    D[CoreFusion<br/>Multi-Rig Fusion]
+    E[Your Application<br/>Processed Output Consumer]
+    F[MotionCoder<br/>Optional Gesture Interaction Layer]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+
+---
+
 ## 🎥 Layer 1 – Capture
 
 **What this layer does:**
