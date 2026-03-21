@@ -53,6 +53,7 @@ flowchart LR
     F[MotionCoder<br/>Optional Gesture Interaction Layer]
 
     A --> B
+    B --> D
     B --> C
     C --> D
     D --> E
