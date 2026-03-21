@@ -121,8 +121,8 @@ flowchart LR
     B1 --> C1
     B2 --> C2
 
-    B1 --> D
-    B2 --> D
+    C1 --> D
+    C2 --> D
 
     D --> E
     D --> F
