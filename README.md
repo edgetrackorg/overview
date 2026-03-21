@@ -109,10 +109,10 @@ flowchart LR
     C1[<strong>CoreStereo 1</strong><br/>Heavy Stereo Compute]
     C2[<strong>CoreStereo 2</strong><br/>Heavy Stereo Compute]    
 
-    C[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
-    D[<strong>Your Application</strong><br/>Processed Output Consumer]
-    E[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
-    F[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    E[<strong>Your Application</strong><br/>Processed Output Consumer]
+    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
 
     A1 --> B1
     A2 --> B2
@@ -120,14 +120,13 @@ flowchart LR
     B1 --> C1
     B2 --> C2
 
-    B1 --> C
-    B2 --> C
+    B1 --> D
+    B2 --> D
 
-    C --> D
-    C --> E
-    E --> F
+    D --> E
+    D --> F
+    F --> G
 ```
-
 
 ---
 
