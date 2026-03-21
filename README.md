@@ -43,24 +43,77 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## 🎥 Layer 1 – Capture
 
-**What this layer does:** This layer **ingests camera/hand-tracking streams**, performs **on-edge preprocessing**, and **synchronizes** frames across devices. It outputs **normalized pose/keypoint streams and ROIs**; if optional AI pipelines are enabled, it can also publish an **H.265 video stream** for preview/segmentation or run **semantic inference directly on the edge** (e.g., via an NPU accelerator).
+**What this layer does:**
+This layer **captures raw camera data and hand-tracking signals**, performs **on-edge preprocessing**, and ensures **precise multi-device synchronization**.
 
-| 🧩 **Module**      | 📝 **Short Description**                                                                                                                                                      | 🔌 **Hardware / Deps**                                                       | ⚖️ **License** | ⚠️ **Notes**                                                            | 🚦 **Status**         | 🔗 **Link**                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------- | --------------------- | ------------------------------------------------------ |
-| **EdgeTrack**      | **RAW10 mono ingest** on Pi 5; GPU/NEON-optimized preproc                                                                                                                      | **Raspberry Pi 5** (4/8 GB), 2× MIPI-CSI (OV9281 etc.)                       | Apache-2.0     | —                                                                       | 🟡 In progress        | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
-| **TDMStrobe**      | **Time-Division-Multiplexed IR strobe & camera trigger** (phase control A/B/C/D) for EdgeTrack                                                                                 | IR-LED/VCSEL arrays, LED-drivers, MCU (RP2040)                               | Apache-2.0     | —                                                                       | 🟡 In progress        | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
-| **EdgeSense**      | AI semantic segmentation & scene understanding on edge (optional pipeline beside geometry-based capture)                                                                       | RGB Camera, optional NPU/AI accelerator                                      | Apache-2.0     | —                                                                       | 🟡 Planned            | coming soon                                            |
+It outputs **RAW streams, normalized keypoints, and ROI metadata**.
+If optional AI pipelines are enabled, it can additionally provide **H.265 preview streams** or run **lightweight semantic inference directly on the edge** (e.g., via an NPU).
+
+| 🧩 **Module** | 📝 **Short Description**                                                                                                       | 🔌 **Hardware / Deps**                              | ⚖️ **License** | ⚠️ **Notes**      | 🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | -------------- | ----------------- | -------------- | ------------------------------------------------------ |
+| **EdgeTrack** | **RAW10 mono capture pipeline** on Raspberry Pi 5 with low-latency preprocessing (NEON/GPU optimized) and deterministic timing | Raspberry Pi 5 (4/8 GB), 2× MIPI-CSI (OV9281, etc.) | Apache-2.0     | —                 | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
+| **TDMStrobe** | **Time-division multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for multi-camera synchronization | IR LED / VCSEL arrays, LED drivers, RP2040 MCU      | Apache-2.0     | —                 | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
+| **EdgeSense** | Optional **AI-based semantic segmentation and scene understanding** running alongside geometry-first capture                   | RGB camera, optional NPU / AI accelerator           | Apache-2.0     | Optional pipeline | 🟡 Planned     | coming soon                                            |
 
 ---
 
-## 🔗 Layer 2 – Host-side fusion
+## ⚙️ Layer 1.5 – Host-side Stereo Compute (Optional)
 
-**What this layer does:** It runs on the host PC and sits between capture. It aggregates 2–4 stereo pairs over LAN, performs time synchronization, multi-view calibration refinement, bundle adjustment, and low-latency fusion/filtering to produce stable spatial outputs such as 3D keypoints, poses, dense depth, or structured motion signals. These outputs can be passed directly to your application, for example robotics, teleoperation, SLAM, spatial input, or gesture-based interaction systems.
+**What this layer does:**
+This layer is **fully optional** and only required when **computationally heavy stereo processing** is needed.
 
-| 🧩 **Module**   | 📝 **Short Description**                                                                                                                                                                                                                                      | 🖥️ **Host**                                                | ⚖️ **License** | ⚠️ **Notes**  | 🚦 **Status** | 🔗 **Link**                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------------|--------------- | -------------- | ------------- | ---------------------------------------------------------- |
-| **CoreFusion**  | Aggregates **2–4 synchronized stereo rigs** over LAN; performs **multi-view calibration**, **bundle adjustment**, **outlier rejection**, and **low-latency fusion** to produce **stable 3D keypoints / keyposes** (joints + confidences + reference anchors). | Host PC (CUDA-capable GPU recommended); ZeroMQ / UDP / TCP | Apache-2.0     | —              | 🟡 Planned    | [CoreFusion](https://github.com/edgetrackorg/corefusion)   |
-| **CoreStereo**   | Host-side stereo compute layer: ingests **synchronized RAW/rectified stereo frames** from EdgeTrack and performs **disparity / depth reconstruction** (dense or ROI-based), plus optional **filters and confidence maps** for downstream modules.             | High-performance CPU example: AMD Threadripper             | Apache-2.0     | —              | 🟡 Planned    | coming soon                                                | 
+Instead of performing stereo reconstruction on the edge, RAW data is streamed to a host PC where **dense or ROI-based disparity/depth computation** is executed before forwarding results to the fusion layer.
+
+👉 Typical use case:
+
+* High-resolution **dense depth**
+* Advanced filtering / confidence maps
+* GPU-accelerated stereo pipelines
+
+👉 Example pipeline:
+
+```
+Rig 1: EdgeTrack (Pi 5) → RAW stream → PC 1 running CoreStereo
+Rig 2: EdgeTrack (Pi 5) → RAW stream → PC 2 running CoreStereo
+Rig 3: EdgeTrack (Pi 5) → RAW stream → PC 3 running CoreStereo
+Rig 4: EdgeTrack (Pi 5) → RAW stream → PC 4 running CoreStereo
+
+PC 1 + PC 2 + PC 3 + PC 4 → CoreFusion (workstation)
+```
+
+If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 2.
+
+| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      | 🖥️ **Host**                                                    | ⚖️ **License** | ⚠️ **Notes**   | 🚦 **Status** | 🔗 **Link** |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------- | -------------- | ------------- | ----------- |
+| **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** | High-performance CPU or GPU (e.g., AMD Threadripper / CUDA GPU) | Apache-2.0     | Optional layer | 🟡 Planned    | coming soon |
+
+---
+
+## 🔗 Layer 2 – Multi-View Fusion
+
+**What this layer does:**
+This layer runs on a host system and performs **multi-view spatial fusion**.
+
+It aggregates multiple stereo rigs, applies **time synchronization**, **calibration refinement**, and **bundle adjustment**, and produces **stable, structured spatial outputs**.
+
+Outputs include:
+
+* 3D keypoints / skeletons
+* Dense or sparse depth
+* Motion signals
+* Structured spatial representations
+
+These outputs are designed for direct use in:
+
+* Robotics
+* Teleoperation
+* SLAM / mapping
+* Spatial input systems
+* Gesture-based interaction
+
+| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                   | 🖥️ **Host**                                  | ⚖️ **License** | ⚠️ **Notes** | 🚦 **Status** | 🔗 **Link**                                              |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------------- | ------------ | ------------- | -------------------------------------------------------- |
+| **CoreFusion** | Aggregates **2–4 synchronized stereo rigs** over LAN; performs **multi-view calibration**, **bundle adjustment**, **outlier rejection**, and **low-latency fusion** to produce **stable 3D keypoints and spatial signals** | Host PC (GPU recommended), ZeroMQ / UDP / TCP | Apache-2.0     | —            | 🟡 Planned    | [CoreFusion](https://github.com/edgetrackorg/corefusion) |
 
 ---
 
