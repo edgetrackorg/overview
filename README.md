@@ -44,6 +44,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## 🔧 Simple pipeline diagram
 
+Single Stereocamera
 ```mermaid
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
@@ -61,6 +62,28 @@ flowchart LR
     D --> E
     D --> F
     F --> G
+```
+
+Multi View Stereocamera
+```mermaid
+flowchart LR
+    A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
+    B[<strong>EdgeTrack</strong><br/>Image Capture]
+    C[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    D[<strong>Your Application</strong><br/>Processed Output Consumer]
+
+    A --> B
+    B --> C
+    C --> D
+    A --> B
+    B --> C
+    C --> D
+    A --> B
+    B --> C
+    C --> D
+    A --> B
+    B --> C
+    C --> D    
 ```
 
 ---
