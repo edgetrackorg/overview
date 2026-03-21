@@ -59,7 +59,7 @@ flowchart LR
     C --> D
     D --> E
     D --> F
-    G --> F
+    F --> G
 ```
 
 ---
