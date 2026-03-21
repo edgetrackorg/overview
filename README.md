@@ -119,9 +119,9 @@ All CoreStereo outputs → CoreFusion (workstation)
 
 If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 2.
 
-| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      | 🖥️ **Host**                                                    | ⚖️ **License** | ⚠️ **Notes**   | 🚦 **Status** | 🔗 **Link** |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------- | -------------- | ------------- | ----------- |
-| **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** | High-performance CPU or GPU (e.g., AMD Threadripper / CUDA GPU) | Apache-2.0     | Optional layer | 🟡 Planned    | coming soon |
+| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link** |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | ----------- |
+| **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | coming soon |
 
 ---
 
@@ -147,9 +147,9 @@ These outputs are designed for direct use in:
 * Spatial input systems
 * Gesture-based interaction
 
-| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                   | 🖥️ **Host**                                  | ⚖️ **License** | ⚠️ **Notes** | 🚦 **Status** | 🔗 **Link**                                              |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- | -------------- | ------------ | ------------- | -------------------------------------------------------- |
-| **CoreFusion** | Aggregates **2–4 synchronized stereo rigs** over LAN; performs **multi-view calibration**, **bundle adjustment**, **outlier rejection**, and **low-latency fusion** to produce **stable 3D keypoints and spatial signals** | Host PC (GPU recommended), ZeroMQ / UDP / TCP | Apache-2.0     | —            | 🟡 Planned    | [CoreFusion](https://github.com/edgetrackorg/corefusion) |
+| 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                   | ⚖️ **License** | 🚦 **Status** | 🔗 **Link**                                              |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------- | -------------------------------------------------------- |
+| **CoreFusion** | Aggregates **2–4 synchronized stereo rigs** over LAN; performs **multi-view calibration**, **bundle adjustment**, **outlier rejection**, and **low-latency fusion** to produce **stable 3D keypoints and spatial signals** |  Apache-2.0    | 🟡 Planned    | [CoreFusion](https://github.com/edgetrackorg/corefusion) |
 
 ---
 
@@ -157,9 +157,9 @@ These outputs are designed for direct use in:
 
 **What this layer does:** It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
 
-| 🧩 **Module**        | 📝 **Short Description**                                 | 🔁 **I/O**                  | ⚖️ **License** | ⚠️ **Notes** | 🚦 **Status**  | 🔗 **Link**                                                                   |
-| -------------------- | --------------------------------------------------------- | ---------------------------- | -------------- | ------------ | -------------- | ------------------------------------------------------------------------------ |
-| **MotionCoder**      | Real-time gestures/intents, state machine, context logic. | Poses/keypoints from Layer 2 | Apache-2.0     | —            | 🟡 Planned     | [MotionCoder](https://github.com/xtanai/motioncoder) |
+| 🧩 **Module**        | 📝 **Short Description**                                  | 🚦 **Status**  | 🔗 **Link**                                                                   |
+| -------------------- | --------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------ |
+| **MotionCoder**      | Real-time gestures/intents, state machine, context logic. | 🟡 Planned     | [MotionCoder](https://github.com/xtanai/motioncoder)                           |
 
 ---
 
@@ -169,10 +169,10 @@ These outputs are designed for direct use in:
 
 > Note: These peripherals **don’t require MotionCoder**. They work like **standard input devices** (e.g., HID) and can be used independently.
 
-| 🧩 **Module**   | 📝 **Short Description**                                                | 🔌 **Hardware / Deps**                                                                                            | ⚖️ **License** | ⚠️ **Notes**                                                                                                            | 🚦 **Status** | 🔗 **Link**                                    |
-| ---------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------- | --------------------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------- | 
-| **Pen3D**        | **Tracked 3D pen input with buttons and optional haptics.**            | Optional ESP32-S3 (BLE) or mechanical.                                                                             | Apache-2.0     | BLE GATT (notify); deep-sleep wake-on-button; optional USB-CDC debug. Designed to coexist with 850 nm NIR tracking.   | 🟡 Planned    | [Pen3D](https://github.com/xtanai/pen3d)       |
-| **HMDone**       | **Minimal VR headset with external marker-based tracking only.**       | Works with high-resolution HMDs (e.g. Pimax Crystal or Valve). No extra hand controllers required for MotionCoder. | Apache-2.0     | Use with multi-view/NIR rigs for best results; inside-out tracking is intentionally ignored.                          | 🟠 Later      | [HMDone](https://github.com/xtanai/hmdone)     |
+| 🧩 **Module**   | 📝 **Short Description**                                                |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link**                                    |
+| ---------------- | ---------------------------------------------------------------------- | --------------- | ------------- | ---------------------------------------------- | 
+| **Pen3D**        | **Tracked 3D pen input with buttons and optional haptics.**            |  Apache-2.0     | 🟡 Planned    | [Pen3D](https://github.com/xtanai/pen3d)       |
+| **HMDone**       | **Minimal VR headset with external marker-based tracking only.**       |  Apache-2.0     | 🟠 Later      | [HMDone](https://github.com/xtanai/hmdone)     |
 
 ---
 
