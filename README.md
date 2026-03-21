@@ -181,7 +181,7 @@ flowchart LR
     E3[EdgeTrack 3] -->|Ethernet Stream| P3[PC 3\nCoreStereo]
     E4[EdgeTrack 4] -->|Ethernet Stream| P4[PC 4\nCoreStereo]
 
-    P1 --> F[PC\nCoreFusion\nWorkstation]
+    P1 --> F[PC Workstation\nCoreFusion]
     P2 --> F
     P3 --> F
     P4 --> F
