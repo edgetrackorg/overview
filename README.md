@@ -77,9 +77,7 @@ It represents a **software-defined, geometry-first approach** designed for flexi
 While FPGA-based systems (e.g., EdgeTrack Pro) can achieve **lower latency and higher determinism**,
 EdgeTrack provides a **practical and powerful foundation** for developing and validating perception pipelines.
 
----
-
-### Architecture Comparison (Estimated)
+**Architecture Comparison (Estimated)**
 
 | Variant                               | Estimated End-to-End Latency |         Jitter | 120 FPS Feasible?                                                  | Compute Headroom       | Development Effort | Strength                                       | Weakness                                                           |
 | ------------------------------------- | ---------------------------: | -------------: | ------------------------------------------------------------------ | ---------------------- | ------------------ | ---------------------------------------------- | ------------------------------------------------------------------ |
