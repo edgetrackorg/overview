@@ -51,19 +51,16 @@ Single Stereo Camera Mode
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
     B[<strong>EdgeTrack</strong><br/>Image Capture]
-    C[<strong>CoreStereo</strong><br/>Optional Heavy Stereo Compute]
-    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
-    E[<strong>Your Application</strong><br/>Processed Output Consumer]
-    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
-    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+    C[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    D[<strong>Your Application</strong><br/>Processed Output Consumer]
+    E[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    F[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
 
     A --> B
-    B --> D
     B --> C
     C --> D
     D --> E
     D --> F
-    F --> G
 ```
 
 Multi-View Stereo Camera Mode
@@ -98,6 +95,26 @@ flowchart LR
     C --> E
     E --> F
 ```
+
+Andere Variant: Single Stereo Camera on Host CoreStereo Mode
+```mermaid
+flowchart LR
+    A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
+    B[<strong>EdgeTrack</strong><br/>Image Capture]
+    C[<strong>CoreStereo</strong><br/>Optional Heavy Stereo Compute]
+    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    E[<strong>Your Application</strong><br/>Processed Output Consumer]
+    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    F --> G
+```
+
 
 ---
 
