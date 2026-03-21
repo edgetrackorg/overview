@@ -42,7 +42,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ---
 
-## 🔧 Simple pipeline diagram
+## 🔧 Pipeline diagram
 
 Single Stereo Camera Mode
 ```mermaid
@@ -99,22 +99,31 @@ flowchart LR
 
 ---
 
-## 🎥 Layer 1 – Capture
+## ⏱️ Layer 1 – Timing
 
-**What this layer does:**
-This layer **captures raw camera data and hand-tracking signals**, performs **on-edge preprocessing**, and ensures **precise multi-device synchronization**.
+**What this layer does:**  
+This layer provides the **timing backbone** of the system. It controls **trigger distribution, phase sequencing, and synchronized IR illumination** across one or more camera rigs, enabling deterministic capture timing and stable multi-device operation.
 
-It outputs **RAW streams, normalized keypoints, and ROI metadata**.
-If optional AI pipelines are enabled, it can additionally provide **H.265 preview streams** or run **lightweight semantic inference directly on the edge** (e.g., via an NPU).
-
-| 🧩 **Module** | 📝 **Short Description**                                                                                                                 |  ⚖️ **License** |  🚦 **Status**  | 🔗 **Link**                                            |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- |  -------------- | ------------------------------------------------------ |
-| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition |  Apache-2.0     |  🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
-| **TDMStrobe** | **Time-division multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   |  Apache-2.0     |  🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
+| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
+| **TDMStrobe** | **Time-division-multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
 
 ---
 
-## ⚙️ Layer 1.5 – Host-side Stereo Compute (Optional)
+## 🎥 Layer 2 – Capture
+
+**What this layer does:**  
+This layer handles **sensor-side image acquisition and edge-side preprocessing**. It captures **raw camera data**, prepares it for downstream stereo or fusion stages, and preserves **precise timing alignment** with the timing layer.
+
+Depending on configuration, it can output **RAW streams, ROI metadata, preview streams, or lightweight edge-side inference results**.
+
+| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
+| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
+
+---
+
+## ⚙️ Layer 2.5 – Host-side Stereo Compute (Optional)
 
 **What this layer does:**
 This layer is **fully optional** and only required when **computationally heavy stereo processing** is needed.
@@ -150,7 +159,7 @@ If not needed, this layer can be **completely skipped**, and data can be sent di
 
 ---
 
-## 🔗 Layer 2 – Multi-View Fusion
+## 🔗 Layer 3 – Multi-View Fusion
 
 **What this layer does:**
 This layer runs on a host system and performs **multi-view spatial fusion**.
@@ -178,7 +187,7 @@ These outputs are designed for direct use in:
 
 ---
 
-## 🧠 Layer 3 – Motion Interpretation (Optional)
+## 🧠 Layer 4 – Motion Interpretation (Optional)
 
 **What this layer does:** It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
 
