@@ -157,9 +157,9 @@ These outputs are designed for direct use in:
 
 **What this layer does:** It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
 
-| 🧩 **Module**        | 📝 **Short Description**                                  | 🚦 **Status**  | 🔗 **Link**                                                                   |
-| -------------------- | --------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------ |
-| **MotionCoder**      | Real-time gestures/intents, state machine, context logic. | 🟡 Planned     | [MotionCoder](https://github.com/xtanai/motioncoder)                           |
+| 🧩 **Module**        | 📝 **Short Description**                                  | ⚖️ **License** | 🚦 **Status**  | 🔗 **Link**                                                                   |
+| -------------------- | --------------------------------------------------------- | -------------- |--------------- | ------------------------------------------------------------------------------ |
+| **MotionCoder**      | Real-time gestures/intents, state machine, context logic. |  Apache-2.0    | 🟡 Planned     | [MotionCoder](https://github.com/xtanai/motioncoder)                           |
 
 ---
 
