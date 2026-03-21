@@ -49,47 +49,10 @@ This layer **captures raw camera data and hand-tracking signals**, performs **on
 It outputs **RAW streams, normalized keypoints, and ROI metadata**.
 If optional AI pipelines are enabled, it can additionally provide **H.265 preview streams** or run **lightweight semantic inference directly on the edge** (e.g., via an NPU).
 
----
-
-### 🔓 Open Source Modules
-
 | 🧩 **Module** | 📝 **Short Description**                                                                                                                 |  ⚖️ **License** |  🚦 **Status**  | 🔗 **Link**                                            |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- |  -------------- | ------------------------------------------------------ |
 | **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition |  Apache-2.0     |  🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
 | **TDMStrobe** | **Time-division multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   |  Apache-2.0     |  🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
-| **EdgeSense** | Optional **AI-based semantic segmentation and scene understanding**, running alongside geometry-first capture pipelines                  |  Apache-2.0     |  🟡 Planned     | coming soon                                            |
-
----
-
-### 🔒 Non-Open Source / Future Modules
-
-| 🧩 **Module**     | 📝 **Short Description**                                                                                                                                                               |  ⚖️ **License**                                   | 🚦 **Status** | 🔗 **Link** |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  ------------------------------------------------ | ------------- | ----------- |
-| **EdgeTrack Pro** | **RAW10 stereo capture and processing pipeline** on a custom FPGA platform, optimized for **ultra-low latency**, **high performance**, and **hardware-accelerated disparity matching** |  Commercial (planned, potentially partially open) | 🔴 Later      | —           |
-
----
-
-### 📝 Note: EdgeTrack vs EdgeTrack Pro
-
-**EdgeTrack is not an inferior version of EdgeTrack Pro.**
-When properly configured, EdgeTrack already provides a practical and capable geometry-first solution for many applications.
-
-**EdgeTrack Pro** is a future FPGA-based variant focused on **lower latency**, **higher determinism**, and **stronger real-time performance**. It is intended as a specialized hardware option, not as a general replacement for EdgeTrack.
-
-At present, **EdgeTrack is the main directly usable solution**.
-**EdgeTrack Pro** remains a possible future internal development path, depending on how ARM-based platforms evolve in performance. See the comparison table below.
-
-**Architecture Comparison (Estimated)**
-
-| Variant                                            | Estimated End-to-End Latency |             Jitter | 120 FPS Feasible?                                                  | Compute Headroom           | Development Effort | Strength                                                           | Weakness                                                               |
-| -------------------------------------------------- | ---------------------------: | -----------------: | ------------------------------------------------------------------ | -------------------------- | ------------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| **2× Camera + ARM (e.g., Pi 5)**                   |                 **12–30 ms** |     medium to high | limited                                                            | low to medium              | low                | Fastest to start, highly flexible                                  | CPU can become a bottleneck                                            |
-| **2× Camera + FPGA (on-device)**                   |                  **3–10 ms** |           very low | yes, most reliable                                                 | high (streaming / ROI)     | very high          | Best responsiveness, highly deterministic                          | Highest development complexity                                         |
-| **2× Camera + ARM → Host processing (CoreStereo)** |                  **8–20 ms** |             medium | yes, better than ARM-only                                          | high (host-side)           | medium             | Best practical compromise                                          | Network transport and synchronization add complexity                   |
-| **2× Camera + Future higher-performance ARM**      |                  **8–20 ms** | potentially medium | possibly, depending on future platform performance                 | potentially medium to high | low to medium      | Could combine simpler architecture with improved local performance | Not yet proven and highly platform-dependent                           |
-| **2× USB Cameras → Host processing**               |               **50–200+ ms** |     medium to high | possible, but highly dependent on camera, driver, and USB pipeline | high (host-side)           | low to medium      | Very easy to prototype with commodity hardware                     | Higher latency, weaker determinism, and additional USB/driver overhead |
-
-> ⚠️ Note: These values are **not measured benchmarks**, but **realistic engineering estimates** based on system architecture, data flow, and typical performance characteristics.
 
 ---
 
