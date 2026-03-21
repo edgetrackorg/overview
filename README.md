@@ -101,7 +101,8 @@ flowchart LR
 
 ## ⏱️ Layer 1 – Timing
 
-**What this layer does:**  
+**What this layer does:** 
+
 This layer provides the **timing backbone** of the system. It controls **trigger distribution, phase sequencing, and synchronized IR illumination** across one or more camera rigs, enabling deterministic capture timing and stable multi-device operation.
 
 | 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
@@ -113,6 +114,7 @@ This layer provides the **timing backbone** of the system. It controls **trigger
 ## 🎥 Layer 2 – Capture
 
 **What this layer does:**  
+
 This layer handles **sensor-side image acquisition and edge-side preprocessing**. It captures **raw camera data**, prepares it for downstream stereo or fusion stages, and preserves **precise timing alignment** with the timing layer.
 
 Depending on configuration, it can output **RAW streams, ROI metadata, preview streams, or lightweight edge-side inference results**.
@@ -126,6 +128,7 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 ## ⚙️ Layer 2.5 – Host-side Stereo Compute (Optional)
 
 **What this layer does:**
+
 This layer is **fully optional** and only required when **computationally heavy stereo processing** is needed.
 
 Instead of performing stereo reconstruction on the edge, RAW data is streamed to a host PC where **dense or ROI-based disparity/depth computation** is executed before forwarding results to the fusion layer.
@@ -162,6 +165,7 @@ If not needed, this layer can be **completely skipped**, and data can be sent di
 ## 🔗 Layer 3 – Multi-View Fusion
 
 **What this layer does:**
+
 This layer runs on a host system and performs **multi-view spatial fusion**.
 
 It aggregates multiple stereo rigs, applies **time synchronization**, **calibration refinement**, and **bundle adjustment**, and produces **stable, structured spatial outputs**.
@@ -189,7 +193,9 @@ These outputs are designed for direct use in:
 
 ## 🧠 Layer 4 – Motion Interpretation (Optional)
 
-**What this layer does:** It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
+**What this layer does:** 
+
+It converts **poses/keypoints** into **high-level intents** using **gesture grammars**, **state machines**, and **context rules** (tool modes, constraints, safety). It handles **debounce**, **disambiguation**, and **confidence scoring**, producing **deterministic, low-latency events**.
 
 | 🧩 **Module**        | 📝 **Short Description**                                  | ⚖️ **License** | 🚦 **Status**  | 🔗 **Link**                                                                   |
 | -------------------- | --------------------------------------------------------- | -------------- |--------------- | ------------------------------------------------------------------------------ |
@@ -199,7 +205,9 @@ These outputs are designed for direct use in:
 
 ##  🕹️ Peripherals (Optional)
 
-**What this layer does:** Purpose-built devices that **improve ergonomics and precision** (e.g., clutch/confirm, mode switches, haptic cues). They speak **BLE/USB** and avoid IR emission to stay **camera-safe** in NIR setups.
+**What this layer does:** 
+
+Purpose-built devices that **improve ergonomics and precision** (e.g., clutch/confirm, mode switches, haptic cues). They speak **BLE/USB** and avoid IR emission to stay **camera-safe** in NIR setups.
 
 > Note: These peripherals **don’t require MotionCoder**. They work like **standard input devices** (e.g., HID) and can be used independently.
 
