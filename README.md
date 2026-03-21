@@ -46,7 +46,9 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## 🔧 Pipeline diagram
 
-Single Stereo Camera Mode
+hier gibt es verschieden Variatnen, hier nehme ich nur 3 Varianten:
+
+### 1. Variant: Single Stereo Camera Mode
 ```mermaid
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
@@ -63,7 +65,7 @@ flowchart LR
     D --> F
 ```
 
-Multi-View Stereo Camera Mode
+### 2. Variant: 4x Milti Stereo Camera Mode
 ```mermaid
 flowchart LR
     A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
@@ -96,23 +98,34 @@ flowchart LR
     E --> F
 ```
 
-Andere Variant: Single Stereo Camera on Host CoreStereo Mode
+### 3. Variant: 2x Multi Stereo Camera on Host CoreStereo Mode
 ```mermaid
-flowchart LR
-    A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
-    B[<strong>EdgeTrack</strong><br/>Image Capture]
-    C[<strong>CoreStereo</strong><br/>Optional Heavy Stereo Compute]
-    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
-    E[<strong>Your Application</strong><br/>Processed Output Consumer]
-    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
-    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+    A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
+    A2[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
 
-    A --> B
-    B --> C
+    B1[<strong>EdgeTrack 1</strong><br/>Image Capture]
+    B2[<strong>EdgeTrack 2</strong><br/>Image Capture]
+
+    C1[<strong>CoreStereo 1</strong><br/>Heavy Stereo Compute]
+    C2[<strong>CoreStereo 2</strong><br/>Heavy Stereo Compute]    
+
+    C[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    D[<strong>Your Application</strong><br/>Processed Output Consumer]
+    E[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    F[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+
+    A1 --> B1
+    A2 --> B2
+
+    B1 --> C1
+    B2 --> C2
+
+    B1 --> C
+    B2 --> C
+
     C --> D
-    D --> E
-    D --> F
-    F --> G
+    C --> E
+    E --> F
 ```
 
 
