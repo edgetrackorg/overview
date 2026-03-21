@@ -100,6 +100,7 @@ flowchart LR
 
 ### 3. Variant: 2x Multi Stereo Camera on Host CoreStereo Mode
 ```mermaid
+flowchart LR
     A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
     A2[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
 
