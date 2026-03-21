@@ -94,13 +94,29 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 
 👉 Example pipeline:
 
-```
-EdgeTrack 1 → Ethernet stream (2× RAW stereo + optional RGB) → PC 1 (CoreStereo)
-EdgeTrack 2 → Ethernet stream (2× RAW stereo + optional RGB) → PC 2 (CoreStereo)
-EdgeTrack 3 → Ethernet stream (2× RAW stereo + optional RGB) → PC 3 (CoreStereo)
-EdgeTrack 4 → Ethernet stream (2× RAW stereo + optional RGB) → PC 4 (CoreStereo)
+```mermaid
+flowchart LR
+    E1[EdgeTrack 1]
+    E2[EdgeTrack 2]
+    E3[EdgeTrack 3]
+    E4[EdgeTrack 4]
 
-All CoreStereo outputs → CoreFusion (workstation)
+    P1[PC 1\nCoreStereo]
+    P2[PC 2\nCoreStereo]
+    P3[PC 3\nCoreStereo]
+    P4[PC 4\nCoreStereo]
+
+    F[CoreFusion\nMulti-Rig Fusion Workstation]
+
+    E1 -->|2x RAW stereo + RGB (optional)\nEthernet| P1
+    E2 -->|2x RAW stereo + RGB (optional)\nEthernet| P2
+    E3 -->|2x RAW stereo + RGB (optional)\nEthernet| P3
+    E4 -->|2x RAW stereo + RGB (optional)\nEthernet| P4
+
+    P1 -->|Stereo output| F
+    P2 -->|Stereo output| F
+    P3 -->|Stereo output| F
+    P4 -->|Stereo output| F
 ```
 
 If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 2.
