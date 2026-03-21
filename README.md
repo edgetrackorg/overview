@@ -176,10 +176,10 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 
 ```mermaid
 flowchart LR
-    E1[EdgeTrack 1] -->|Ethernet Stream| P1[PC 1\nCoreStereo]
-    E2[EdgeTrack 2] -->|Ethernet Stream| P2[PC 2\nCoreStereo]
-    E3[EdgeTrack 3] -->|Ethernet Stream| P3[PC 3\nCoreStereo]
-    E4[EdgeTrack 4] -->|Ethernet Stream| P4[PC 4\nCoreStereo]
+    E1[ARM\nEdgeTrack 1] -->|Ethernet Stream| P1[PC 1\nCoreStereo]
+    E2[ARM\nEdgeTrack 2] -->|Ethernet Stream| P2[PC 2\nCoreStereo]
+    E3[ARM\nEdgeTrack 3] -->|Ethernet Stream| P3[PC 3\nCoreStereo]
+    E4[ARM\nEdgeTrack 4] -->|Ethernet Stream| P4[PC 4\nCoreStereo]
 
     P1 --> F[PC Workstation\nCoreFusion]
     P2 --> F
