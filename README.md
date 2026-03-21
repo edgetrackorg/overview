@@ -61,9 +61,9 @@ flowchart LR
 
     A --> B
     B --> C
-    C --> D
+    C --> E
     D --> E
-    D --> F
+    E --> F
 ```
 
 ### Four-Rig Multi-View Stereo Camera Mode
