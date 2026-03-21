@@ -46,9 +46,10 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## 🔧 Pipeline diagram
 
-hier gibt es verschieden Variatnen, hier nehme ich nur 3 Varianten:
+EdgeTrack supports multiple architecture variants.
+For clarity, this section shows three representative pipeline configurations:
 
-### 1. Variant: Single Stereo Camera Mode
+### Single Stereo Camera Mode
 ```mermaid
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
@@ -65,7 +66,7 @@ flowchart LR
     D --> F
 ```
 
-### 2. Variant: 4x Milti Stereo Camera Mode
+### Four-Rig Multi-View Stereo Camera Mode
 ```mermaid
 flowchart LR
     A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
@@ -98,7 +99,7 @@ flowchart LR
     E --> F
 ```
 
-### 3. Variant: 2x Multi Stereo Camera on Host CoreStereo Mode
+### Two-Rig Stereo Camera Mode with Host-Side CoreStereo
 ```mermaid
 flowchart LR
     A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
