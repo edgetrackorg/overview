@@ -88,7 +88,8 @@ flowchart LR
     A4 --> B4
 
     A1 --> A2
-    A2 --> A1   
+    A2 --> A3
+    A3 --> A4
 
     B1 --> C
     B2 --> C
