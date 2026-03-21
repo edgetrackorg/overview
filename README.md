@@ -53,19 +53,19 @@ If optional AI pipelines are enabled, it can additionally provide **H.265 previe
 
 ### 🔓 Open Source Modules
 
-| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | 🔌 **Hardware / Dependencies**                 | ⚖️ **License** | ⚠️ **Notes**                   | 🚦 **Status**  | 🔗 **Link**                                            |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | -------------- | ------------------------------ | -------------- | ------------------------------------------------------ |
-| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition | Raspberry Pi 5, 2× MIPI-CSI (e.g., OV9281)     | Apache-2.0     | Geometry-first pipeline        | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
-| **TDMStrobe** | **Time-division multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   | IR LED / VCSEL arrays, LED drivers, RP2040 MCU | Apache-2.0     | Hardware synchronization layer | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
-| **EdgeSense** | Optional **AI-based semantic segmentation and scene understanding**, running alongside geometry-first capture pipelines                  | RGB camera, optional NPU / AI accelerator      | Apache-2.0     | Optional AI pipeline           | 🟡 Planned     | coming soon                                            |
+| 🧩 **Module** | 📝 **Short Description**                                                                                                                 |  ⚖️ **License** |  🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- |  -------------- | ------------------------------------------------------ |
+| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition |  Apache-2.0     |  🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
+| **TDMStrobe** | **Time-division multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   |  Apache-2.0     |  🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
+| **EdgeSense** | Optional **AI-based semantic segmentation and scene understanding**, running alongside geometry-first capture pipelines                  |  Apache-2.0     |  🟡 Planned     | coming soon                                            |
 
 ---
 
 ### 🔒 Non-Open Source / Future Modules
 
-| 🧩 **Module**     | 📝 **Short Description**                                                                                                                                                               | 🔌 **Hardware / Dependencies**                                               | ⚖️ **License**                                   | ⚠️ **Notes**                       | 🚦 **Status** | 🔗 **Link** |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------- | ------------- | ----------- |
-| **EdgeTrack Pro** | **RAW10 stereo capture and processing pipeline** on a custom FPGA platform, optimized for **ultra-low latency**, **high performance**, and **hardware-accelerated disparity matching** | Custom FPGA board, 2× MIPI-CSI (e.g., OV9281), multi-channel IR illumination | Commercial (planned, potentially partially open) | High-performance hardware pipeline | 🔴 Planned    | —           |
+| 🧩 **Module**     | 📝 **Short Description**                                                                                                                                                               |  ⚖️ **License**                                   | 🚦 **Status** | 🔗 **Link** |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  ------------------------------------------------ | ------------- | ----------- |
+| **EdgeTrack Pro** | **RAW10 stereo capture and processing pipeline** on a custom FPGA platform, optimized for **ultra-low latency**, **high performance**, and **hardware-accelerated disparity matching** |  Commercial (planned, potentially partially open) | 🔴 Planned    | —           |
 
 ---
 
