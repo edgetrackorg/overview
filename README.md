@@ -187,11 +187,11 @@ flowchart LR
     P4 --> F
 ```
 
-If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 2.
-
 | 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link** |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | ----------- |
 | **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | coming soon |
+
+If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 3.
 
 ---
 
