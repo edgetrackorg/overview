@@ -51,6 +51,7 @@ flowchart LR
     D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
     E[<strong>Your Application</strong><br/>Processed Output Consumer]
     F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    G[<strong>Various Software Integrations<</strong><br/>APIs / Tools / External Systems]
 
     A --> B
     B --> D
@@ -58,6 +59,7 @@ flowchart LR
     C --> D
     D --> E
     D --> F
+    G --> F
 ```
 
 ---
