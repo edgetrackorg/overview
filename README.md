@@ -41,7 +41,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ---
 
-## Simple pipeline diagram
+## 🔧 Simple pipeline diagram
 
 ```mermaid
 flowchart LR
@@ -51,7 +51,7 @@ flowchart LR
     D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
     E[<strong>Your Application</strong><br/>Processed Output Consumer]
     F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
-    G[<strong>Various Software Integrations<</strong><br/>APIs / Tools / External Systems]
+    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
 
     A --> B
     B --> D
