@@ -40,3 +40,18 @@ Depth precision and usable range depend on baseline geometry, optics, illuminati
 For transparency, geometric performance relationships are documented separately via disparity-based calculation tools.
 
 \*** Leap Motion uses two cameras, but it is not a conventional stereo disparity system.
+
+## OAK (Luxonis)
+
+OAK is a strong company, and in many ways its approach is similar to EdgeTrack.
+
+However, there are still some important differences:
+
+| Topic           | OAK (Luxonis)                          | EdgeTrack                                                                 |
+| --------------- | -------------------------------------- | ------------------------------------------------------------------------- |
+| Overall concept | Strong integrated stereo/AI platform   | Geometry-first tracking architecture with optional AI                     |
+| Hardware model  | Partly platform-locked                 | More hardware-agnostic and adaptable across many PC and ARM-based systems |
+| Flexibility     | Good, but within the Luxonis ecosystem | More open to custom architecture                                          |
+| Focus           | Ready-made device pipeline             | Direct control over timing, RAW data, and ROI-based processing            |
+
+**One of EdgeTrack’s main advantages is direct RAW access close to memory, especially for zero-copy processing. This allows a more efficient low-latency pipeline. In contrast, with OAK, custom host-side processing is more dependent on transferring data out of the device pipeline first, which can be less efficient for strict RAW-first architectures.**
