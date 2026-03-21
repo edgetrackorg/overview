@@ -73,10 +73,10 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 👉 Example pipeline:
 
 ```
-Rig 1: EdgeTrack (Pi 5 or Radxa 5T) → RAW stream → PC 1 running CoreStereo
-Rig 2: EdgeTrack (Pi 5 or Radxa 5T) → RAW stream → PC 2 running CoreStereo
-Rig 3: EdgeTrack (Pi 5 or Radxa 5T) → RAW stream → PC 3 running CoreStereo
-Rig 4: EdgeTrack (Pi 5 or Radxa 5T) → RAW stream → PC 4 running CoreStereo
+Rig 1: EdgeTrack (Pi 5 or Radxa 5T) → 2x RAW stream → PC 1 running CoreStereo
+Rig 2: EdgeTrack (Pi 5 or Radxa 5T) → 2x RAW stream → PC 2 running CoreStereo
+Rig 3: EdgeTrack (Pi 5 or Radxa 5T) → 2x RAW stream → PC 3 running CoreStereo
+Rig 4: EdgeTrack (Pi 5 or Radxa 5T) → 2x RAW stream → PC 4 running CoreStereo
 
 PC 1 + PC 2 + PC 3 + PC 4 → CoreFusion (workstation)
 ```
