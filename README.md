@@ -46,11 +46,11 @@ A common limitation of classical stereo systems is performance on low-texture su
 ```mermaid
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
-    B[**EdgeTrack**<br/>Image Capture]
-    C[**CoreStereo**<br/>Optional Heavy Stereo Compute]
-    D[CoreFusion<br/>Multi-Rig Fusion]
-    E[Your Application<br/>Processed Output Consumer]
-    F[MotionCoder<br/>Optional Gesture Interaction Layer]
+    B[<strong>EdgeTrack</strong><br/>Image Capture]
+    C[<strong>CoreStereo</strong><br/>Optional Heavy Stereo Compute]
+    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    E[<strong>Your Application</strong><br/>Processed Output Consumer]
+    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
 
     A --> B
     B --> D
