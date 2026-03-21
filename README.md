@@ -44,7 +44,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 
 ## 🔧 Simple pipeline diagram
 
-Single Stereocamera
+Single Stereo Camera Mode
 ```mermaid
 flowchart LR
     A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
@@ -64,26 +64,37 @@ flowchart LR
     F --> G
 ```
 
-Multi View Stereocamera
+Multi-View Stereo Camera Mode
 ```mermaid
 flowchart LR
-    A[<strong>TDMStrobe</strong><br/>Timing & Synchronization]
-    B[<strong>EdgeTrack</strong><br/>Image Capture]
+    A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
+    A2[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
+    A3[<strong>TDMStrobe 3</strong><br/>Timing & Synchronization]
+    A4[<strong>TDMStrobe 4</strong><br/>Timing & Synchronization]
+
+    B1[<strong>EdgeTrack 1</strong><br/>Image Capture]
+    B2[<strong>EdgeTrack 2</strong><br/>Image Capture]
+    B3[<strong>EdgeTrack 3</strong><br/>Image Capture]
+    B4[<strong>EdgeTrack 4</strong><br/>Image Capture]
+
     C[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
     D[<strong>Your Application</strong><br/>Processed Output Consumer]
+    E[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    F[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
 
-    A --> B
-    B --> C
+    A1 --> B1
+    A2 --> B2
+    A3 --> B3
+    A4 --> B4
+
+    B1 --> C
+    B2 --> C
+    B3 --> C
+    B4 --> C
+
     C --> D
-    A --> B
-    B --> C
-    C --> D
-    A --> B
-    B --> C
-    C --> D
-    A --> B
-    B --> C
-    C --> D    
+    C --> E
+    E --> F
 ```
 
 ---
