@@ -135,10 +135,10 @@ flowchart LR
 ### 8× Industrial Cameras — Host-Side CoreStereo
 ```mermaid
 flowchart LR
-    A1[<strong>TDMStrobeETH 1</strong><br/>Timing & Synchronization]
-    A2[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
-    A3[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
-    A4[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
+    A1[<strong>TDMStrobe 1</strong><br/>Timing & Synchronization]
+    A2[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
+    A3[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
+    A4[<strong>TDMStrobe 2</strong><br/>Timing & Synchronization]
 
     B1[<strong>Industrial Camera 1</strong><br/>Image Capture]
     B2[<strong>Industrial Camera 2</strong><br/>Image Capture]
@@ -221,7 +221,7 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 
 ---
 
-## ⚙️ Layer 3 – Host-side Stereo Compute (Optional)
+## ⚙️ Layer 3 – Host-side Stereo Compute
 
 **What this layer does:**
 
