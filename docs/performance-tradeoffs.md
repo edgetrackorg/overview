@@ -208,42 +208,6 @@ For this reason EdgeTrack deliberately avoids **H.265 pipelines** and focuses on
 
 ---
 
-## SLAM Considerations
-
-For SLAM applications, strict hard real-time performance is often not required.
-
-Instead of maximizing FPS, systems can operate at:
-
-* lower frame rates
-* higher latency
-* larger compute budgets
-
-With **multi-view fusion (CoreFusion)**, geometric redundancy increases. This improves numerical conditioning and overall SLAM robustness.
-
-The Raspberry Pi 5 is well suited for:
-
-* experimental research setups
-* flexible SLAM pipelines
-* hybrid CPU/GPU processing
-
-### Alternative Processing Strategies
-
-Example configuration:
-
-**1280×800 @ 30 FPS (RAW10)**
-Two cameras stream directly from the Raspberry Pi to a host system where disparity computation is performed.
-
-Alternative setup:
-
-**1280×800 @ 120 FPS (RAW10)**
-Two cameras connected to a **Radxa ROCK 5B (2.5GbE)**.
-
-While 4 GB RAM can be sufficient for streaming, using **two boards (one per camera)** provides better bandwidth margin and system stability.
-
-Future Raspberry Pi generations may significantly increase compute and network performance, enabling higher on-device disparity rates.
-
----
-
 ## LiDAR / ToF Trade-offs
 
 LiDAR and Time-of-Flight sensors are often used for 3D perception but introduce trade-offs for **precision interaction workflows**.
