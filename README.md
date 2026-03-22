@@ -187,6 +187,10 @@ flowchart LR
     P4 --> F
 ```
 
+* Each **EdgeTrack** unit captures synchronized stereo data on ARM hardware and streams it via Ethernet to a dedicated CoreStereo host.
+* Each **CoreStereo** PC performs dense disparity and local 3D reconstruction for one rig.
+* The workstation running **CoreFusion** then aggregates all rig outputs into one unified multi-rig scene.
+
 | 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link** |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | ----------- |
 | **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | coming soon |
