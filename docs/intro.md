@@ -89,10 +89,7 @@ In difficult situations — such as low texture, fast motion, partial occlusion,
 
 In multi-view setups, geometric redundancy often reduces the amount of AI assistance required.
 
-EdgeSense can run on available **GPU or NPU hardware**, such as:
-
-* Raspberry Pi AI HAT+
-* Radxa AI platforms
+EdgeSense can run on available **GPU or NPU hardware**.
 
 **Mechanical analogy:**
 EdgeSense is the **turbocharger** — it increases performance when needed.
