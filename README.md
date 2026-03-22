@@ -133,6 +133,8 @@ flowchart LR
 ```
 
 ### 8× Industrial Cameras — Host-Side CoreStereo
+
+```mermaid
 flowchart LR
     A1[<strong>TDMStrobeETH 1</strong><br/>Timing & Synchronization]
     A2[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
