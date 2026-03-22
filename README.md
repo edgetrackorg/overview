@@ -194,8 +194,6 @@ flowchart LR
     F --> G
 ```
 
-Example camera used: [Industrial Camera](https://va-imaging.com/de/products/usb-camera-3-0-2mp-monochrome-gpixel-gmax4002-mer2-240-159u3m?_pos=8&_fid=7d1549543&_ss=c#second-part-specifications)
-
 ---
 
 ## ⏱️ Layer 1 – Timing
