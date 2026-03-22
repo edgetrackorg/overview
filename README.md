@@ -202,10 +202,10 @@ flowchart LR
 
 This layer provides the **timing backbone** of the system. It controls **trigger distribution, phase sequencing, and synchronized IR illumination** across one or more camera rigs, enabling deterministic capture timing and stable multi-device operation.
 
-| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
-| **TDMStrobe** | **Time-division-multiplexed IR illumination and trigger system** für ARM with phase control (A/B/C/D) for precise multi-camera synchronization   | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
-| **TDMStrobeETH** oder was schlagst du vor? | für nur industrie camera kompatibel, nicht ARM
+| 🧩 **Module**    | 📝 **Short Description**                                                                                                                                                                       | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                                 |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
+| **TDMStrobe**    | **Time-division-multiplexed IR illumination and trigger system** für ARM with phase control (A/B/C/D) for precise multi-camera synchronization                                                 | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe)       |
+| **TDMStrobeETH** | **Ethernet-controlled time-division-multiplexed IR illumination and trigger system** for industrial and host-connected camera setups, with phase control for precise external synchronization  | Apache-2.0      | 🟡 In progress | [EdgeTrackETH](https://github.com/edgetrackorg/tdmstrobeeth) |
 
 ---
 
@@ -220,7 +220,6 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 | 🧩 **Module**    | 📝 **Short Description**                                                                                                                                                                      | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                                  |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
 | **EdgeTrack**    | **Time-division-multiplexed IR illumination and trigger system** for ARM-based EdgeTrack nodes, with phase control (A/B/C/D) for precise multi-camera synchronization                         | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack)       |
-| **TDMStrobeETH** | **Ethernet-controlled time-division-multiplexed IR illumination and trigger system** for industrial and host-connected camera setups, with phase control for precise external synchronization | Apache-2.0      | 🟡 In progress | [EdgeTrackETH](https://github.com/edgetrackorg/edgetracketh) |
 
 ---
 
