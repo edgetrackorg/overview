@@ -174,54 +174,7 @@ The system is released under open licenses to encourage experimentation, modific
 
 ---
 
-## Design and Features
-
-### 1. Clear Separation of Capture and Processing
-
-#### Problem
-
-Native **MIPI CSI** camera interfaces offer excellent bandwidth, low latency, and precise timing, but they suffer from a major limitation: **very short cable lengths**, which makes larger or distributed camera setups impractical.
-
-**USB-based** camera solutions allow longer cables, but USB is **interrupt-driven and host-dependent**, which typically results in **higher latency, increased jitter, and less deterministic timing**—especially problematic for tightly synchronized multi-camera systems.
-
-**Ethernet/LAN-based** cameras improve distance and deployment flexibility, but many implementations still rely on **OS-level interrupts, buffering, and packet scheduling**, which are not inherently optimized for **hard real-time capture** or frame-accurate multi-camera synchronization. In practice, achieving truly deterministic behavior often requires a **real-time–tuned OS and network stack**, along with careful system-level optimization.
-
-In addition, purpose-built **GigE / 2.5GigE machine-vision cameras** remain relatively expensive—often **€500+ per unit**—which makes large multi-camera arrays **cost-heavy** and limits scalability from a hardware-budget perspective.
-
-At the high end, **CoaXPress** can deliver outstanding performance with direct, low-latency data paths into CPU/GPU memory. However, it comes with **very high hardware cost**, requires dedicated **frame grabbers**, and scales poorly **in terms of system cost and integration complexity**. Beyond the capture hardware itself, processing **multiple high-resolution cameras on a single host** can place a substantial load on the CPU/GPU—often pushing systems toward high-end workstation-class hardware (e.g., Threadripper-class systems) and significant engineering effort to optimize the processing pipeline.
-
-#### Solution
-
-EdgeTrack separates **image capture** from **high-level processing** by moving **reconstruction and preprocessing directly to the edge**. Instead of concentrating the entire workload on a single, expensive host system, each edge device performs its **local reconstruction tasks** using native MIPI CSI—where it performs best—and exports only **processed, compact 3D data** (e.g., keypoints, tool poses, sparse geometry) over the network.
-
-This architecture preserves the **timing fidelity and signal quality** of native CSI capture while remaining **cost-efficient, scalable, and deployment-friendly**.
-
----
-
-### 2. Ethernet-Native Alternative to CoaXPress
-
-A **CoaXPress-based** camera infrastructure is a high-end solution in terms of **bandwidth and timing precision**, but it is **cost-intensive** and requires substantial **integration effort**, including dedicated **frame grabbers** and complex host-side pipelines.
-
-Instead, comparable practical precision **for the target outputs** can be achieved through a combination of:
-
-- **Well-defined multi-view geometry**
-- **Calibrated stereo triangulation**
-- **Edge-side preprocessing**
-- **Early fusion in CoreFusion**
-
-By transmitting **stable 3D primitives** (e.g., keypoints, tool poses, sparse geometry) rather than raw video streams, the system delivers **reproducible, low-jitter 3D signals** with significantly lower bandwidth requirements and reduced host-side complexity.
-
-For the intended application, this architecture can **approach CoaXPress-class results** for **pose/keypoint accuracy and temporal stability**, while offering:
-
-- **Simpler integration**
-- **Lower hardware and maintenance costs**
-- **Much better scalability**
-
-Additional rigs can be added via **standard LAN connections**, rather than consuming limited frame-grabber channels and centralized capture resources.
-
----
-
-### 3. TDM Phase-Offset Capture for Deterministic Timing
+## TDM Phase-Offset Capture for Deterministic Timing
 
 EdgeTrack uses **phase-offset global-shutter capture via Time-Division Multiplexing (TDM)**.
 Instead of exposing all cameras simultaneously, multiple stereo rigs are triggered in **time-interleaved phases**.
@@ -253,33 +206,3 @@ The key distinction is **where timing is generated**:
 Therefore, EdgeTrack uses **LAN for payload and timestamps**, while **TDM phase triggering is generated locally on each edge device** (Pi-side or MCU-side). If multiple edge devices must share a common phase reference, synchronization is handled via a **deterministic wired sync bus** (e.g., **RS-485**) or a **shared time base** (e.g., clock sync + scheduled start times), rather than sending **per-frame triggers** over the network.
 
 > In short: **LAN transports data; the edge generates timing.**
-
-### 4. Short Features
-
-#### Stereo-First, Not AI-First
-
-EdgeTrack uses **NIR stereo vision** as the primary tracking method. Depth is computed through **triangulation**, which means the system measures real geometry instead of guessing it. This makes the output predictable, repeatable, and easier to validate—especially important in professional workflows where stability matters more than “impressive demos.”
-
-#### Designed for Short-Exposure Motion Freeze
-
-The front-facing NIR illumination is not decorative. It enables **ultra-short exposure times** that freeze fast motion and reduce blur. This improves stereo correspondence, reduces noise, and stabilizes tracking under real-world movement—something many consumer-grade depth solutions struggle with.
-
-#### MultiView as the Main Upgrade Path
-
-Instead of relying on heavier models to “fix” failures, EdgeTrack scales through **MultiView geometry**. With **2–3 stereo rigs**, occlusions are reduced and robustness increases dramatically. In many scenarios, MultiView delivers reliability that would otherwise require complex AI, but without losing determinism.
-
-#### Edge Processing, Minimal Data Output
-
-EdgeTrack is designed to process data on the edge and export only what matters:
-
-* 3D keypoints
-* ROI point clouds
-* compact geometric results
-
-This reduces bandwidth, lowers latency, and keeps the system scalable for multi-sensor setups.
-
-#### Optional AI as a Support Layer
-
-AI can be added where it truly helps—such as plausibility checks, lightweight classification, or recovery in difficult edge cases. But AI is not the core. The core is a system you can measure, tune, and trust.
-
----
