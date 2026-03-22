@@ -6,7 +6,7 @@ EdgeTrack is an open multi-view tracking architecture based on RAW-first capture
 
 The architecture can be applied to gesture interaction, 3D keypoint extraction, spatial input, robotics, teleoperation, and other motion-driven systems. This repository serves as the central overview and concept documentation for EdgeTrack, including architectural notes, design principles, and related system documents.
 
-Alongside classical stereo pipelines, EdgeTrack may also support optional neural stereo methods for multi-view processing, including acceleration on NPU-based hardware where suitable. These AI-assisted components are optional and complement the core geometry-first architecture rather than replacing it.
+Alongside classical stereo pipelines, EdgeTrack may also support optional neural stereo methods for multi-view processing, including acceleration on GPU-based hardware where suitable. These AI-assisted components are optional and complement the core geometry-first architecture rather than replacing it.
 
 ---
 
