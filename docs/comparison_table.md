@@ -71,25 +71,33 @@ In this context, the comparison focuses on the transport stage only — not on s
 
 A **direct industrial-camera-to-host path** usually provides the **lowest latency** and **lowest jitter**, because it avoids the extra buffering, packetization, and OS scheduling stage introduced by an intermediate ARM node. By contrast, an ARM-based capture node can offer more flexibility and custom control, especially when using a lean V4L2-based stack instead of a heavier camera framework. 
 
-## Approximate latency and jitter comparison
+## Approximate Latency and Jitter Comparison
 
 > These values are **practical engineering estimates**, not fixed vendor guarantees.
-> Real results depend on sensor mode, buffering, driver behavior, packet size, host load, and network configuration.
+> Real-world results depend on sensor mode, buffering, driver behavior, packet size, host load, and network configuration.
 
-| Path                                            | Approx. additional transport / pipeline latency |        Approx. jitter | Positioning                                                               |
-| ----------------------------------------------- | ----------------------------------------------: | --------------------: | ------------------------------------------------------------------------- |
-| **CoaXPress industrial camera → host**          |                             **sub-ms to ~2 ms** |          **very low** | Best for high-speed, deterministic machine vision                         |
-| **Industrial camera GigE → host**               |                                     **~1–5 ms** |   **low to moderate** | Strong balance of cable length, standardization, and host-side processing |
-| **Industrial camera USB3 → host**               |                                     **~1–4 ms** |   **low to moderate** | Very fast and direct, but shorter cable range and host dependency         |
-| **ARM node with libcamera → host**              |                                    **~5–15 ms** |          **moderate** | Flexible and open, but adds software and buffering overhead               |
-| **ARM node with custom lean V4L2 stack → host** |                                    **~3–10 ms** | **moderate to lower** | Better than libcamera-based streaming when optimized for minimal overhead |
+| Path                                                         | Approx. additional transport / pipeline latency |        Approx. jitter | Positioning                                                               |
+| ------------------------------------------------------------ | ----------------------------------------------: | --------------------: | ------------------------------------------------------------------------- |
+| **CoaXPress industrial camera → host**                       |                             **sub-ms to ~2 ms** |          **very low** | Best for high-speed, deterministic machine vision                         |
+| **Industrial camera GigE → host**                            |                                     **~1–4 ms** |   **low to moderate** | Strong balance of cable length, standardization, and host-side processing |
+| **Industrial camera USB3 → host**                            |                                     **~1–5 ms** |   **low to moderate** | Very fast and direct, but shorter cable range and host dependency         |
+| **ARM node with libcamera → host**                           |                                    **~5–15 ms** |          **moderate** | Flexible and open, but adds software and buffering overhead               |
+| **ARM node with custom lean V4L2 stack → host**              |                                    **~3–10 ms** | **moderate to lower** | Reduced overhead compared to libcamera when optimized                     |
+| **ARM node with RTLinux + lean V4L2 stack → host**           |                                     **~2–8 ms** |   **low to moderate** | Further optimized for reduced scheduling delay and improved determinism   |
 
-### Why these numbers differ
+---
 
-* **CoaXPress** is designed for very high throughput and strong real-time behavior. Adimec reports about **3.4 µs latency** with about **4 ns jitter** for triggering over CoaXPress, and Euresys describes CoaXPress trigger latency as **under 0.5 µs**. These figures refer to the trigger path rather than full frame transport, but they illustrate why CoaXPress is generally considered the most deterministic option.
-* **GigE** and **USB3** camera pipelines are still direct host paths, but Basler notes that for both interfaces the **transmission start delay can vary between frames** and depends on when the host calls for data transmission.
-* **libcamera** on Raspberry Pi includes a pipeline handler plus image-processing algorithms such as auto exposure, auto white balance, and lens-shading correction, which makes it convenient but can add complexity and overhead compared with a minimal capture path. 
-* A **custom V4L2 streaming path** can reduce overhead because V4L2 streaming with `mmap` exchanges **buffer pointers instead of copying image data**, which is more suitable for low-latency RAW capture.
+## Why These Numbers Differ
+
+* **CoaXPress** is designed for very high throughput and strong real-time behavior. Reported trigger latencies in the microsecond range illustrate its highly deterministic nature, although these values refer to trigger paths rather than full frame transport.
+
+* **GigE** and **USB3** camera pipelines are still direct host paths. However, transmission timing can vary depending on host-side scheduling and when data transfer is initiated, introducing some jitter.
+
+* **libcamera** on ARM platforms (e.g., Raspberry Pi) includes a full pipeline with image processing (auto exposure, white balance, lens correction). While convenient, this adds complexity and additional latency compared to minimal RAW capture paths.
+
+* A **custom V4L2 streaming implementation** can significantly reduce overhead. Using `mmap` allows buffer sharing without copying image data, which is beneficial for low-latency RAW streaming.
+
+* A **RTLinux** can further reduce scheduling delays and jitter by improving task prioritization, interrupt handling, and CPU isolation. However, it does not eliminate the fundamental overhead of the additional ARM processing stage.
 
 ---
 
