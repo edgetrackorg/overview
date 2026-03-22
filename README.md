@@ -223,7 +223,7 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 
 ---
 
-## ⚙️ Layer 2.5 – Host-side Stereo Compute (Optional)
+## ⚙️ Layer 3 – Host-side Stereo Compute (Optional)
 
 **What this layer does:**
 
@@ -235,11 +235,11 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | --------------------------------------------------------- |
 | **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | [CoreStereo](https://github.com/edgetrackorg/corestereo)  |
 
-If not needed, this layer 2.5 can be **completely skipped**, and data can be sent directly to Layer 3.
+If not needed, this layer 3 can be **completely skipped**, and data can be sent directly to Layer 4.
 
 ---
 
-## 🔗 Layer 3 – Multi-View Fusion
+## 🔗 Layer 4 – Multi-View Fusion
 
 **What this layer does:**
 
@@ -268,7 +268,7 @@ These outputs are designed for direct use in:
 
 ---
 
-## 🧠 Layer 4 – Motion Interpretation (Optional)
+## 🧠 Layer 5 – Motion Interpretation (Optional)
 
 **What this layer does:** 
 
