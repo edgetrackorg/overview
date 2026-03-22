@@ -49,7 +49,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 ## 🔧 Pipeline diagram
 
 EdgeTrack supports multiple architecture variants.
-For clarity, this section presents three representative pipeline configurations that highlight the system’s scalability:
+For clarity, this section presents four representative pipeline configurations that highlight the system’s scalability:
 
 ### Single Stereo Camera Mode
 ```mermaid
@@ -132,6 +132,68 @@ flowchart LR
     F --> G
 ```
 
+### 8× Industrial Cameras — Host-Side CoreStereo
+flowchart LR
+    A1[<strong>TDMStrobeETH 1</strong><br/>Timing & Synchronization]
+    A2[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
+    A3[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
+    A4[<strong>TDMStrobeETH 2</strong><br/>Timing & Synchronization]
+
+    B1[<strong>Industrial Camera 1</strong><br/>Image Capture]
+    B2[<strong>Industrial Camera 2</strong><br/>Image Capture]
+    B3[<strong>Industrial Camera 3</strong><br/>Image Capture]
+    B4[<strong>Industrial Camera 4</strong><br/>Image Capture]
+    B5[<strong>Industrial Camera 5</strong><br/>Image Capture]
+    B6[<strong>Industrial Camera 6</strong><br/>Image Capture]
+    B7[<strong>Industrial Camera 7</strong><br/>Image Capture]
+    B8[<strong>Industrial Camera 8</strong><br/>Image Capture]
+    
+    C1[<strong>CoreStereo 1</strong><br/>Heavy Stereo Compute]
+    C2[<strong>CoreStereo 2</strong><br/>Heavy Stereo Compute]
+    C3[<strong>CoreStereo 3</strong><br/>Heavy Stereo Compute]  
+    C4[<strong>CoreStereo 4</strong><br/>Heavy Stereo Compute]      
+
+    D[<strong>CoreFusion</strong><br/>Multi-Rig Fusion]
+    E[<strong>Your Application</strong><br/>Processed Output Consumer]
+    F[<strong>MotionCoder</strong><br/>Optional Gesture Interaction Layer]
+    G[<strong>Third-Party Integrations</strong><br/>APIs / Tools / External Systems]
+
+    A1 --> B1
+    A1 --> B2
+
+    A2 --> B3
+    A2 --> B4
+
+    A3 --> B5
+    A3 --> B6
+
+    A4 --> B7
+    A4 --> B8
+
+    B1 --> C1
+    B2 --> C1
+
+    B3 --> C2
+    B4 --> C2
+
+    B5 --> C3
+    B6 --> C3
+
+    B7 --> C4
+    B8 --> C4
+
+    C1 --> D
+    C2 --> D
+    C3 --> D
+    C4 --> D
+
+    D --> E
+    D --> F
+    F --> G
+```
+
+Example camera used: [Industrial Camera](https://va-imaging.com/de/products/usb-camera-3-0-2mp-monochrome-gpixel-gmax4002-mer2-240-159u3m?_pos=8&_fid=7d1549543&_ss=c#second-part-specifications)
+
 ---
 
 ## ⏱️ Layer 1 – Timing
@@ -142,7 +204,8 @@ This layer provides the **timing backbone** of the system. It controls **trigger
 
 | 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
-| **TDMStrobe** | **Time-division-multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
+| **TDMStrobe** | **Time-division-multiplexed IR illumination and trigger system** für ARM with phase control (A/B/C/D) for precise multi-camera synchronization   | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
+| **TDMStrobeETH** oder was schlagst du vor? | für nur industrie camera kompatibel, nicht ARM
 
 ---
 
@@ -154,9 +217,10 @@ This layer handles **sensor-side image acquisition and edge-side preprocessing**
 
 Depending on configuration, it can output **RAW streams, ROI metadata, preview streams, or lightweight edge-side inference results**.
 
-| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
-| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
-| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
+| 🧩 **Module**    | 📝 **Short Description**                                                                                                                                                                      | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
+| **EdgeTrack**    | **Time-division-multiplexed IR illumination and trigger system** for ARM-based EdgeTrack nodes, with phase control (A/B/C/D) for precise multi-camera synchronization                         | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack)       |
+| **TDMStrobeETH** | **Ethernet-controlled time-division-multiplexed IR illumination and trigger system** for industrial and host-connected camera setups, with phase control for precise external synchronization | Apache-2.0      | 🟡 In progress | [EdgeTrackETH](https://github.com/edgetrackorg/edgetracketh) |
 
 ---
 
