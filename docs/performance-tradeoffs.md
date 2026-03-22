@@ -259,12 +259,12 @@ The table below provides a simplified engineering comparison:
 
 | Interface              | Additional Chips / Infrastructure  | RAW Access | Latency | Determinism |
 | ---------------------- | ---------------------------------- | ---------: | ------: | ----------: |
-| **MIPI CSI-2**         | very few                           |      ⭐⭐⭐⭐⭐ |   ⭐⭐⭐⭐⭐ |       ⭐⭐⭐⭐⭐ |
-| **USB2 (typical UVC)** | medium                             |      ⭐☆☆☆☆ |   ⭐☆☆☆☆ |       ⭐☆☆☆☆ |
-| **USB3 (typical UVC)** | medium                             |      ⭐⭐☆☆☆ |   ⭐⭐⭐☆☆ |       ⭐⭐☆☆☆ |
-| **USB3 Vision**        | medium to high                     |      ⭐⭐⭐⭐☆ |   ⭐⭐⭐⭐☆ |       ⭐⭐⭐☆☆ |
-| **GigE / GigE Vision** | high                               |      ⭐⭐⭐⭐☆ |   ⭐⭐⭐☆☆ |       ⭐⭐⭐⭐☆ |
-| **CoaXPress**          | very high (frame grabber required) |      ⭐⭐⭐⭐⭐ |   ⭐⭐⭐⭐⭐ |       ⭐⭐⭐⭐⭐ |
+| **MIPI CSI-2**         | very few                           | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| **USB2 (typical UVC)** | medium                             | ⭐☆☆☆☆     | ⭐☆☆☆☆     | ⭐☆☆☆☆ |
+| **USB3 (typical UVC)** | medium                             | ⭐⭐☆☆☆    | ⭐⭐⭐☆☆   | ⭐⭐☆☆☆ |
+| **USB3 Vision**        | medium to high                     | ⭐⭐⭐⭐☆  | ⭐⭐⭐⭐☆  | ⭐⭐⭐☆☆ |
+| **GigE / GigE Vision** | high                               | ⭐⭐⭐⭐☆  | ⭐⭐⭐☆☆   | ⭐⭐⭐⭐☆ |
+| **CoaXPress**          | very high (frame grabber required) | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
 
 #### Summary
 
