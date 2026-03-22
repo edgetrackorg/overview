@@ -86,10 +86,10 @@ A **direct industrial-camera-to-host path** usually provides the **lowest latenc
 
 ### Why these numbers differ
 
-* **CoaXPress** is designed for very high throughput and strong real-time behavior. Adimec reports about **3.4 µs latency** with about **4 ns jitter** for triggering over CoaXPress, and Euresys describes CoaXPress trigger latency as **under 0.5 µs**. These figures refer to the trigger path rather than full frame transport, but they illustrate why CoaXPress is generally considered the most deterministic option. ([Adimec][2])
-* **GigE** and **USB3** camera pipelines are still direct host paths, but Basler notes that for both interfaces the **transmission start delay can vary between frames** and depends on when the host calls for data transmission. ([Basler Produktdokumentation][1])
-* **libcamera** on Raspberry Pi includes a pipeline handler plus image-processing algorithms such as auto exposure, auto white balance, and lens-shading correction, which makes it convenient but can add complexity and overhead compared with a minimal capture path. ([Raspberry Pi][3])
-* A **custom V4L2 streaming path** can reduce overhead because V4L2 streaming with `mmap` exchanges **buffer pointers instead of copying image data**, which is more suitable for low-latency RAW capture. ([Linux-Kernel-Archive][4])
+* **CoaXPress** is designed for very high throughput and strong real-time behavior. Adimec reports about **3.4 µs latency** with about **4 ns jitter** for triggering over CoaXPress, and Euresys describes CoaXPress trigger latency as **under 0.5 µs**. These figures refer to the trigger path rather than full frame transport, but they illustrate why CoaXPress is generally considered the most deterministic option.
+* **GigE** and **USB3** camera pipelines are still direct host paths, but Basler notes that for both interfaces the **transmission start delay can vary between frames** and depends on when the host calls for data transmission.
+* **libcamera** on Raspberry Pi includes a pipeline handler plus image-processing algorithms such as auto exposure, auto white balance, and lens-shading correction, which makes it convenient but can add complexity and overhead compared with a minimal capture path. 
+* A **custom V4L2 streaming path** can reduce overhead because V4L2 streaming with `mmap` exchanges **buffer pointers instead of copying image data**, which is more suitable for low-latency RAW capture.
 
 ---
 
