@@ -10,6 +10,8 @@ This repository serves as the central overview and concept documentation for Edg
 
 Alongside classical stereo pipelines, EdgeTrack may also support optional neural stereo methods for multi-view processing, including acceleration on GPU-based hardware where appropriate. These AI-assisted components are optional and complement the core geometry-first architecture rather than replacing it.
 
+EdgeTrack is hardware-agnostic and designed to remain highly flexible across different system classes, including ARM or PC platforms, industrial cameras, and camera modules such as MIPI CSI.
+
 ---
 
 ## Is this a novel architecture?
