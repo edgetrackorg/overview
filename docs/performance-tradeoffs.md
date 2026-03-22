@@ -166,18 +166,6 @@ This can significantly reduce compute cost in practice while improving determini
 
 ---
 
-## Do We Use Jetson?
-
-Yes, potentially — but not as the primary baseline.
-
-Jetson provides significant compute performance, but it also moves the system toward a higher-cost, higher-power, and more GPU-centric architecture. EdgeTrack is deliberately designed around deterministic capture, strict timing control, and a RAW-first pipeline on affordable hardware.
-
-In many existing Jetson-based camera workflows, H.264/H.265 transport is commonly used for convenience and bandwidth reduction. By contrast, fully controlled RAW-first pipelines are often less mature or less straightforward in the context of deterministic stereo capture and multi-rig synchronization.
-
-Jetson support may be introduced later for more demanding processing modes, but it is not the baseline target for the first stable release.
-
----
-
 ## Why RAW Stereo Instead of H.265
 
 Many stereo cameras rely on **H.264/H.265 compression**.
