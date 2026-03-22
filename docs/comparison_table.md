@@ -60,7 +60,7 @@ However, there are still some important differences:
 
 ---
 
-# Data RAW stream
+# RAW Data Stream
 
 This section compares several ways to stream **RAW image data** from a camera or edge device to a host system.
 The goal is to evaluate which transport path is more suitable for **low latency**, **low jitter**, and **high-performance stereo processing**.
