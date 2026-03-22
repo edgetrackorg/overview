@@ -17,7 +17,7 @@ Alongside classical stereo pipelines, EdgeTrack may also support optional neural
 **Just copy and paste the following question into your AI assistant:**
 
 ```text
-Is a stereo vision system built around actively controlled NIR illumination, homogeneous flood lighting with optional VCSEL, phase-shifted multi-camera synchronization, ROI-based processing focused on motion-critical regions such as hands, and a RAW-first zero-copy architecture that uses high-quality point clouds instead of fully dense depth maps, together with dual-resolution pipelines for both dense depth estimation and high-precision reconstruction on low-cost ARM hardware, considered a novel architecture? Are comparable systems already available on the market, or is this type of solution still largely missing?
+Is a stereo vision system built around actively controlled NIR illumination, homogeneous flood lighting with optional VCSEL, phase-shifted multi-camera synchronization, ROI-based processing focused on motion-critical regions such as hands, and a RAW-first zero-copy architecture that uses high-quality point clouds instead of fully dense depth maps, together with dual-resolution pipelines for both dense depth estimation and high-precision reconstruction on low-cost ARM hardware, considered a novel architecture? Are comparable systems already available on the market, or is this type of solution still largely missing? And is such a system realistically achievable in practice?
 
 And is such a geometry-based approach better suited for precise and reproducible 3D reconstruction in many applications compared to purely AI-based inference?
 ```
