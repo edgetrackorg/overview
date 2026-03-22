@@ -197,9 +197,13 @@ flowchart LR
 
 If not needed, this layer 2.5 can be **completely skipped**, and data can be sent directly to Layer 3.
 
-> **Note:** For development, a host-side CoreStereo setup is often the more practical and straightforward starting point compared to a more complex Jetson-based implementation. For example, a Ryzen 7 with 32 GB RAM can already serve as a reasonable minimum configuration for a single stereo rig. This makes early development simpler and more accessible. Jetson-based optimization can still be explored later as a more advanced path.
+**Note:** For development, a host-side **CoreStereo** setup is often a more practical and straightforward starting point than a more complex Jetson-based implementation. A **Ryzen 7 with 32 GB RAM** can already serve as a reasonable minimum for a single stereo rig, making early development simpler, more accessible, and easier to debug.
 
-> **Potential differentiator:** If CoreStereo reliably achieves full dense host-side reconstruction at **2× 1280×800 @ 120 FPS RAW10**, while maintaining high accuracy, strong density, and low latency, it would stand out as a highly uncommon capability among existing stereo processing pipelines.
+**Key advantage:** CoreStereo is designed for **full dense host-side reconstruction at 2× 1280×800 @ 120 FPS RAW10**, while maintaining **high accuracy, strong density, and low latency**. This positions it beyond what is typically achievable on edge-class **ARM** or **VPU-based** systems.
+
+**Trade-off:** Increased hardware overhead compared with edge-side processing. 
+
+**Tip:** **FPGA** remains a possible future alternative for lower-latency and more deterministic acceleration.
 
 ---
 
