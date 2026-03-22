@@ -49,7 +49,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 ## 🔧 Pipeline diagram
 
 EdgeTrack supports multiple architecture variants.
-For clarity, this section presents four representative pipeline configurations that highlight the system’s scalability:
+For clarity, this section presents three representative pipeline configurations that highlight the system’s scalability:
 
 ### Single Stereo Camera Mode
 ```mermaid
@@ -133,7 +133,6 @@ flowchart LR
 ```
 
 ### 8× Industrial Cameras — Host-Side CoreStereo
-
 ```mermaid
 flowchart LR
     A1[<strong>TDMStrobeETH 1</strong><br/>Timing & Synchronization]
@@ -202,10 +201,9 @@ flowchart LR
 
 This layer provides the **timing backbone** of the system. It controls **trigger distribution, phase sequencing, and synchronized IR illumination** across one or more camera rigs, enabling deterministic capture timing and stable multi-device operation.
 
-| 🧩 **Module**    | 📝 **Short Description**                                                                                                                                                                       | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                                 |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
-| **TDMStrobe**    | **Time-division-multiplexed IR illumination and trigger system** für ARM with phase control (A/B/C/D) for precise multi-camera synchronization                                                 | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe)       |
-| **TDMStrobeETH** | **Ethernet-controlled time-division-multiplexed IR illumination and trigger system** for industrial and host-connected camera setups, with phase control for precise external synchronization  | Apache-2.0      | 🟡 In progress | [EdgeTrackETH](https://github.com/edgetrackorg/tdmstrobeeth) |
+| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
+| **TDMStrobe** | **Time-division-multiplexed IR illumination and trigger system** with phase control (A/B/C/D) for precise multi-camera synchronization   | Apache-2.0      | 🟡 In progress | [TDMStrobe](https://github.com/edgetrackorg/tdmstrobe) |
 
 ---
 
@@ -217,9 +215,9 @@ This layer handles **sensor-side image acquisition and edge-side preprocessing**
 
 Depending on configuration, it can output **RAW streams, ROI metadata, preview streams, or lightweight edge-side inference results**.
 
-| 🧩 **Module**    | 📝 **Short Description**                                                                                                                                                                      | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                                  |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
-| **EdgeTrack**    | **Time-division-multiplexed IR illumination and trigger system** for ARM-based EdgeTrack nodes, with phase control (A/B/C/D) for precise multi-camera synchronization                         | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack)       |
+| 🧩 **Module** | 📝 **Short Description**                                                                                                                 | ⚖️ **License**  | 🚦 **Status**  | 🔗 **Link**                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
+| **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
 
 ---
 
@@ -227,9 +225,10 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 
 **What this layer does:**
 
-This layer is **fully optional** and only required when **computationally heavy stereo processing** is needed.
+For ARM-based edge nodes, this layer is **fully optional** and only needed when **computationally heavy stereo processing** is required.
+For base industrial-camera setups, however, this layer is typically **required**.
 
-Instead of performing stereo reconstruction on the edge, RAW data is streamed to a host PC where **dense or ROI-based disparity/depth computation** is executed before forwarding results to the fusion layer.
+Instead of performing stereo reconstruction directly on the edge device, RAW data is streamed to a host PC, where **dense or ROI-based disparity and depth computation** is executed before the results are forwarded to the fusion layer.
 
 | 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link**                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | --------------------------------------------------------- |
