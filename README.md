@@ -170,7 +170,7 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 
 * High-resolution **dense depth**
 * Advanced filtering / confidence maps
-* GPU-accelerated stereo pipelines
+* GPU-accelerated or CPU-intensive stereo pipelines
 
 👉 Example pipeline:
 
@@ -196,6 +196,8 @@ flowchart LR
 | **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | coming soon |
 
 If not needed, this layer can be **completely skipped**, and data can be sent directly to Layer 3.
+
+> **Note:** For development, a host-side CoreStereo setup is often the more practical and straightforward starting point compared to a more complex Jetson-based implementation. For example, a Ryzen 7 with 32 GB RAM can already serve as a reasonable minimum configuration for a single stereo rig. This makes early development simpler and more accessible. Jetson-based optimization can still be explored later as a more advanced path.
 
 ---
 
