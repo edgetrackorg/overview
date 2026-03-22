@@ -168,44 +168,11 @@ This layer is **fully optional** and only required when **computationally heavy 
 
 Instead of performing stereo reconstruction on the edge, RAW data is streamed to a host PC where **dense or ROI-based disparity/depth computation** is executed before forwarding results to the fusion layer.
 
-👉 Typical use case:
-
-* High-resolution **dense depth**
-* Advanced filtering / confidence maps
-* High-performance CPU-based stereo pipelines (optionally GPU-accelerated)
-
-👉 Example pipeline:
-
-```mermaid
-flowchart LR
-    E1[ARM 1\nEdgeTrack] -->|Ethernet Stream| P1[PC 1\nCoreStereo]
-    E2[ARM 2\nEdgeTrack] -->|Ethernet Stream| P2[PC 2\nCoreStereo]
-    E3[ARM 3\nEdgeTrack] -->|Ethernet Stream| P3[PC 3\nCoreStereo]
-    E4[ARM 4\nEdgeTrack] -->|Ethernet Stream| P4[PC 4\nCoreStereo]
-
-    P1 --> F[PC Workstation\nCoreFusion]
-    P2 --> F
-    P3 --> F
-    P4 --> F
-```
-
-* Each **EdgeTrack** unit captures synchronized stereo data on ARM hardware and streams it via Ethernet to a dedicated CoreStereo host.
-* Each **CoreStereo** PC performs dense disparity and local 3D reconstruction for one rig.
-* The workstation running **CoreFusion** then aggregates all rig outputs into one unified multi-rig scene.
-
 | 🧩 **Module**  | 📝 **Short Description**                                                                                                                                                                                                      |  ⚖️ **License** | 🚦 **Status** | 🔗 **Link**                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  -------------- | ------------- | --------------------------------------------------------- |
 | **CoreStereo** | Host-side stereo processing module: ingests **synchronized RAW or rectified stereo streams** and performs **disparity/depth reconstruction** (dense or ROI-based), including optional **filtering and confidence estimation** |  Apache-2.0     | 🟡 Planned    | [CoreStereo](https://github.com/edgetrackorg/corestereo)  |
 
 If not needed, this layer 2.5 can be **completely skipped**, and data can be sent directly to Layer 3.
-
-**Note:** For development, a host-side **CoreStereo** setup is often a more practical and straightforward starting point than a more complex Jetson-based implementation. A **Ryzen 7 with 32 GB RAM** can already serve as a reasonable minimum for a single stereo rig, making early development simpler, more accessible, and easier to debug.
-
-**Key advantage:** CoreStereo targets **full dense host-side reconstruction at 2× 1280×800 @ 120 FPS RAW10**, while maintaining **high accuracy, strong density, and low latency**. This level of performance is enabled by high-end desktop CPUs (e.g., Ryzen 9 7950-class systems) with optimized stereo pipelines, exceeding the capabilities of typical edge-class **ARM** or **VPU-based** systems.
-
-**Trade-off:** Increased hardware overhead compared with edge-side processing. 
-
-**Tip:** **FPGA** remains a possible future alternative for lower-latency and more deterministic acceleration.
 
 ---
 
