@@ -197,7 +197,7 @@ flowchart LR
 
 If not needed, this layer 2.5 can be **completely skipped**, and data can be sent directly to Layer 3.
 
-**Note:** For development, a host-side **CoreStereo** setup is often a more practical and straightforward starting point than a more complex Jetson-based implementation. A **Ryzen 9 7950 with 32 GB RAM** can already serve as a reasonable minimum for a single stereo rig, making early development simpler, more accessible, and easier to debug.
+**Note:** For development, a host-side **CoreStereo** setup is often a more practical and straightforward starting point than a more complex Jetson-based implementation. A **Ryzen 7 with 32 GB RAM** can already serve as a reasonable minimum for a single stereo rig, making early development simpler, more accessible, and easier to debug.
 
 **Key advantage:** CoreStereo targets **full dense host-side reconstruction at 2× 1280×800 @ 120 FPS RAW10**, while maintaining **high accuracy, strong density, and low latency**. This level of performance is enabled by high-end desktop CPUs (e.g., Ryzen 9 7950-class systems) with optimized stereo pipelines, exceeding the capabilities of typical edge-class **ARM** or **VPU-based** systems.
 
