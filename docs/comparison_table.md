@@ -49,11 +49,11 @@ However, there are still some important differences:
 
 | Topic           | OAK (Luxonis)                          | EdgeTrack                                                                 |
 | --------------- | -------------------------------------- | ------------------------------------------------------------------------- |
-| Overall concept | Strong integrated stereo/AI platform   | Geometry-first tracking architecture with optional AI                     |
+| Overall concept | Strong integrated stereo/AI platform*  | Geometry-first tracking architecture with optional AI                     |
 | Hardware model  | Partly platform-locked                 | More hardware-agnostic and adaptable across many PC and ARM-based systems |
 | Flexibility     | Good, but within the Luxonis ecosystem | More open to custom architecture                                          |
 | Focus           | Ready-made device pipeline             | Direct control over timing, RAW data, and ROI-based processing            |
 
 **One of EdgeTrack’s main advantages is direct RAW access close to memory, especially for zero-copy processing. This allows a more efficient low-latency pipeline. In contrast, with OAK, custom host-side processing is more dependent on transferring data out of the device pipeline first, which can be less efficient for strict RAW-first architectures.**
 
-**Note:** By the way, although Luxonis often presents DepthAI as its overall platform, their documentation suggests that the main and more broadly supported depth pipeline is still the classical StereoDepth approach rather than a neural one. A neural alternative called NeuralDepth also exists, but it is more limited in hardware support and operating range, which suggests practical trade-offs compared with the classical stereo pipeline.
+> * Note: By the way, although Luxonis often presents DepthAI as its overall platform, their documentation suggests that the main and more broadly supported depth pipeline is still the classical StereoDepth approach rather than a neural one. A neural alternative called NeuralDepth also exists, but it is more limited in hardware support and operating range, which suggests practical trade-offs compared with the classical stereo pipeline.
