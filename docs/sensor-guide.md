@@ -61,7 +61,7 @@ for 3D Hand-Tracking Reconstruction
 
   * 🎯 **Lowest latency / best determinism: MIPI-CSI**
 
-  * Alternatives (valid, but not my primary use case):
+  * Alternatives:
 
     * **USB3 Vision**
       → Good for single industrial cameras; cable length is limited without active extenders/repeaters.
