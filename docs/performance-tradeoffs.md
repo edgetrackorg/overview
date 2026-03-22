@@ -31,8 +31,6 @@ If the compute requirements exceed the capabilities of the **Raspberry Pi 5**, t
 
 EdgeTrack deliberately follows the second path. The Raspberry Pi 5 offers a **very strong price-performance window** when geometry is used correctly and processing focuses only on the data that truly matters — for example **ROI-based processing instead of dense full-frame disparity**.
 
-In practice there is often **no real “middle class”** between a Raspberry Pi and workstation-level hardware. Systems tend to jump directly from low-cost embedded hardware to expensive high-performance compute platforms.
-
 ---
 
 ## The Importance of Direct RAW Access
