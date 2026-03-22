@@ -170,7 +170,7 @@ Instead of performing stereo reconstruction on the edge, RAW data is streamed to
 
 * High-resolution **dense depth**
 * Advanced filtering / confidence maps
-* GPU-accelerated or CPU-intensive stereo pipelines
+* High-performance CPU-based stereo pipelines (optionally GPU-accelerated)
 
 👉 Example pipeline:
 
