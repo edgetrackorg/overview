@@ -49,7 +49,7 @@ A common limitation of classical stereo systems is performance on low-texture su
 ## 🔧 Pipeline diagram
 
 EdgeTrack supports multiple architecture variants.
-For clarity, this section presents three representative pipeline configurations that highlight the system’s scalability:
+For clarity, this section presents four representative pipeline configurations that highlight the system’s scalability:
 
 ### Single Stereo Camera Mode
 ```mermaid
