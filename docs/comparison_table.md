@@ -149,3 +149,45 @@ A good summary is:
 > **Industrial cameras are generally faster and more deterministic, while ARM-based stream nodes are generally more flexible and easier to adapt to custom multi-rig architectures.**
 
 ---
+
+## VPU vs CPU vs GPU vs FPGA
+
+Many stereo cameras use a **VPU**, **ASIC**, or fixed-function depth engine to compute disparity directly on-device. This can be highly efficient for producing dense depth output with low power consumption.
+
+However, such approaches often come with reduced flexibility, limited pipeline visibility, and less control over the underlying processing stages.
+
+By contrast, host-side and programmable architectures allow much deeper control over the stereo pipeline.
+
+The **Raspberry Pi 5** and similar ARM-based systems represent a different trade-off. They are not the most efficient option for **full-frame dense disparity**, but they provide **full pipeline control** and make it easier to experiment with custom stereo strategies.
+
+EdgeTrack leverages this flexibility through:
+
+* **ROI-based matching**
+* **adjustable disparity ranges**
+* **custom RAW preprocessing**
+* **host-side fusion and reconstruction**
+* **hardware-level synchronization across multiple rigs**
+
+This can significantly reduce compute cost in practice while improving determinism, transparency, and reproducibility.
+
+**FPGA-based processing** represents another important category. Compared with general-purpose CPUs and GPUs, FPGAs can provide **very low latency**, **high determinism**, and efficient streaming-style processing. They are especially attractive for fixed, high-speed stereo pipelines once the processing architecture has stabilized. The trade-off is significantly higher development complexity and reduced iteration speed compared with software-based CPU pipelines.
+
+| Feature                   | CPU (ARM)       | CPU (High-End Host) | GPU (Host-Side)   | VPU / ASIC (On-Device)                    | FPGA                          |
+| ------------------------- | --------------- | ------------------- | ----------------- | ----------------------------------------- | ----------------------------- |
+| Dense depth efficiency    | ⚠️ Medium       | 🚀 Very high        | 🚀 Very high      | ✅ High                                    | 🚀 Very high                  |
+| 720p @ 30 FPS             | ⚠️ Borderline   | ✅ Stable            | ✅ Stable          | ✅ Stable                                  | ✅ Stable                      |
+| 120 FPS dense             | ❌ Not practical | ⚠️ Possible         | ⚠️ Possible       | ❌ Rare                                    | ✅ Strong potential            |
+| ROI processing            | ✅ Excellent     | ✅ Excellent         | ✅ Strong          | ⚠️ Limited                                | ✅ Excellent                   |
+| Pipeline control          | ✅ Full          | ✅ Full              | ✅ High            | ⚠️ Limited                                | ✅ Very high                   |
+| Multi-rig synchronization | ✅ Ideal         | ⚠️ Complex          | ⚠️ Host-dependent | ⚠️ Limited                                | ✅ Excellent                   |
+| Determinism               | ✅ Good          | ✅ Good              | ⚠️ Moderate       | ✅ Good                                    | 🚀 Excellent                  |
+| Development speed         | ✅ Fast          | ✅ Fast              | ⚠️ Medium         | ✅ Easy to use, limited to vendor pipeline | ❌ Slow / complex              |
+| Flexibility               | ✅ Very high     | ✅ Very high         | ✅ High            | ⚠️ Limited                                | ✅ High, but hardware-specific |
+
+### Summary
+
+* **VPU / ASIC** → ideal for simple, low-power on-device dense depth
+* **GPU** → strong acceleration for large-scale host-side processing
+* **CPU (ARM)** → best for flexible edge-side control, synchronization, and custom RAW pipelines
+* **CPU (high-end host)** → ideal for deterministic, controllable, host-side stereo processing and multi-rig systems
+* **FPGA** → best suited for low-latency, highly deterministic, high-speed stereo pipelines once the architecture is stable
