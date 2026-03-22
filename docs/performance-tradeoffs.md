@@ -252,30 +252,35 @@ In practice, USB is convenient for simple setups, Ethernet offers the most contr
 
 ---
 
-### ⚙️ Quick Engineering Comparison — What is the best interface for deterministic vision?
+### ⚙️ Quick Engineering Comparison — What Is the Best Interface for Deterministic Vision?
 
-When designing a machine-vision or stereo system, the choice of sensor interface has a strong impact on latency, control, and system complexity.
-Below is a simplified engineering comparison:
+When designing a machine-vision or stereo system, the choice of sensor interface has a major impact on latency, control, transparency, and overall system complexity.
+The table below provides a simplified engineering comparison:
 
-| Interface              | Additional Chips / Infra | RAW Access | Latency     | Determinism |
-| ---------------------- | ------------------------ | ---------- | ----------- | ---------- |
-| **MIPI CSI-2**         | very few                 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| **USB2 (typical UVC)** | medium                   | ⭐☆☆☆☆     | ⭐⭐☆☆☆     | ⭐☆☆☆☆     |
-| **USB3 (typical UVC)** | medium                   | ⭐⭐☆☆☆    | ⭐⭐⭐☆☆   | ⭐⭐☆☆☆     |
-| **GigE / GigE Vision** | many                     | ⭐⭐⭐⭐☆  | ⭐⭐⭐☆☆   | ⭐⭐⭐⭐☆  |
-| **CoaXPress**          | heavy (framegrabber)     | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Interface              | Additional Chips / Infrastructure  | RAW Access | Latency | Determinism |
+| ---------------------- | ---------------------------------- | ---------: | ------: | ----------: |
+| **MIPI CSI-2**         | very few                           |      ⭐⭐⭐⭐⭐ |   ⭐⭐⭐⭐⭐ |       ⭐⭐⭐⭐⭐ |
+| **USB2 (typical UVC)** | medium                             |      ⭐☆☆☆☆ |   ⭐☆☆☆☆ |       ⭐☆☆☆☆ |
+| **USB3 (typical UVC)** | medium                             |      ⭐⭐☆☆☆ |   ⭐⭐⭐☆☆ |       ⭐⭐☆☆☆ |
+| **USB3 Vision**        | medium to high                     |      ⭐⭐⭐⭐☆ |   ⭐⭐⭐⭐☆ |       ⭐⭐⭐☆☆ |
+| **GigE / GigE Vision** | high                               |      ⭐⭐⭐⭐☆ |   ⭐⭐⭐☆☆ |       ⭐⭐⭐⭐☆ |
+| **CoaXPress**          | very high (frame grabber required) |      ⭐⭐⭐⭐⭐ |   ⭐⭐⭐⭐⭐ |       ⭐⭐⭐⭐⭐ |
 
 #### Summary
 
-**MIPI CSI-2** is typically the best choice when deterministic timing, minimal latency, and direct RAW sensor access are required. The sensor is connected almost directly to the SoC, which reduces hidden processing stages and keeps the pipeline transparent.
+**MIPI CSI-2** is typically the best choice when deterministic timing, minimal latency, and direct RAW sensor access are required. Because the sensor is connected almost directly to the SoC, the capture path remains highly transparent and avoids many hidden processing stages.
 
-**USB cameras** usually include additional ISP and bridge chips. They are convenient and plug-and-play, but often introduce internal processing and buffering that reduce determinism.
+**USB2 cameras**, especially typical UVC devices, are convenient and widely available, but they are generally the weakest option for deterministic vision. They often rely on internal ISP processing, compression, buffering, and shared host scheduling, which increases latency and reduces control.
 
-**GigE cameras** are powerful for industrial networking and long cable distances, but typically require more intermediate logic (FPGA/ASIC, packetization, buffering), which increases system complexity.
+**USB3 cameras** improve bandwidth significantly compared to USB2 and can be practical for many machine-vision tasks. However, typical USB3 camera designs may still include bridge logic, internal buffering, and host-dependent transfer behavior, which makes them less deterministic than native embedded interfaces.
 
-**CoaXPress** is a high-end industrial interface designed for very high bandwidth and deterministic transmission. It typically requires a dedicated frame grabber card on the host side and specialized hardware inside the camera. While it offers excellent throughput, low latency, and strong determinism, it significantly increases system cost, hardware complexity, and power requirements compared to embedded MIPI-based designs.
+**USB3 Vision cameras** are a more serious industrial option than typical USB UVC devices. They usually provide better control, improved RAW access, more reliable transport behavior, and stronger integration with machine-vision software stacks. However, they still depend on host-side USB scheduling and are generally less deterministic than tightly integrated MIPI or fully industrial transport systems such as CoaXPress.
 
-For edge-processing architectures focused on precise timing and reproducible results, **MIPI CSI-2 provides the most transparent and controllable capture path**.
+**GigE Vision cameras** are powerful when long cable lengths, standardized industrial networking, and scalable multi-camera setups are important. They are often a strong practical compromise. However, they typically require more intermediate logic inside the camera, including packetization, buffering, and transport control, which increases architectural complexity compared to embedded MIPI pipelines.
+
+**CoaXPress** is a high-end industrial interface designed for very high bandwidth and highly deterministic transmission. It typically requires a dedicated frame grabber card on the host side and specialized hardware inside the camera. While it offers excellent throughput, low latency, and strong determinism, it also significantly increases system cost, hardware complexity, and power requirements compared to embedded MIPI-based designs.
+
+For edge-processing architectures focused on precise timing, transparent capture, and reproducible results, **MIPI CSI-2 generally provides the most controllable and direct acquisition path**.
 
 ---
 
