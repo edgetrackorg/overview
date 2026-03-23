@@ -14,7 +14,7 @@ EdgeTrack is hardware-agnostic and designed to remain highly flexible across dif
 
 ---
 
-## Is this a novel architecture?
+## Is this a novel architecture? AI vs. Geometry
 
 **Just copy and paste the following question into your AI assistant:**
 
