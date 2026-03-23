@@ -221,6 +221,8 @@ Depending on configuration, it can output **RAW streams, ROI metadata, preview s
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------- | -------------- | ------------------------------------------------------ |
 | **EdgeTrack** | **RAW10 mono capture pipeline** running on ARM-based systems (e.g., Raspberry Pi, Jetson), designed for deterministic stereo acquisition | Apache-2.0      | 🟡 In progress | [EdgeTrack](https://github.com/edgetrackorg/edgetrack) |
 
+When using industrial cameras with direct host output, this layer 2 can be omitted entirely, and the image data can be forwarded directly to Layer 3.
+
 ---
 
 ## ⚙️ Layer 3 – Host-side Stereo Compute
