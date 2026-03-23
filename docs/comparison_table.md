@@ -76,14 +76,15 @@ A **direct industrial-camera-to-host path** usually provides the **lowest latenc
 > These values are **practical engineering estimates**, not fixed vendor guarantees.
 > Real-world results depend on sensor mode, buffering, driver behavior, packet size, host load, and network configuration.
 
-| Path                                                         | Approx. additional transport / pipeline latency |        Approx. jitter | Positioning                                                               |
-| ------------------------------------------------------------ | ----------------------------------------------: | --------------------: | ------------------------------------------------------------------------- |
-| **CoaXPress industrial camera → host**                       |                             **sub-ms to ~2 ms** |          **very low** | Best for high-speed, deterministic machine vision                         |
-| **Industrial camera GigE → host**                            |                                     **~2–5 ms** |   **low to moderate** | Strong balance of cable length, standardization, and host-side processing |
-| **Industrial camera USB3 → host**                            |                                     **~1–4 ms** |   **low to moderate** | Very fast and direct, but limited by shorter cable length and stronger host dependency. |
-| **ARM node with libcamera → host**                           |                                    **~5–15 ms** |          **moderate** | Flexible and open, but adds software and buffering overhead               |
-| **ARM node with custom lean V4L2 stack → host**              |                                    **~3–10 ms** | **moderate to lower** | Reduced overhead compared to libcamera when optimized                     |
-| **ARM node with RTLinux + lean V4L2 stack → host**           |                                     **~2–8 ms** |   **low to moderate** | Further optimized for reduced scheduling delay and improved determinism   |
+| Path                                                         | Approx. additional transport / pipeline latency |        Approx. jitter | Positioning                                                                                                      |
+| ------------------------------------------------------------ | ----------------------------------------------: | --------------------: | ---------------------------------------------------------------------------------------------------------------- |
+| **CoaXPress industrial camera → host**                       |                             **sub-ms to ~2 ms** |          **very low** | Best for high-speed, deterministic machine vision                                                                |
+| **Industrial camera GigE → host**                            |                                     **~2–5 ms** |   **low to moderate** | Strong balance of cable length, standardization, and host-side processing                                        |
+| **Industrial camera USB3 → host**                            |                                     **~1–4 ms** |   **low to moderate** | Very fast and direct, but limited by shorter cable length and stronger host dependency.                          |
+| **ARM node with libcamera → host**                           |                                    **~5–15 ms** |          **moderate** | Flexible and open, but adds software and buffering overhead                                                      |
+| **ARM node with custom lean V4L2 stack → host**              |                                    **~3–10 ms** | **moderate to lower** | Reduced overhead compared to libcamera when optimized                                                            |
+| **ARM node with RTLinux + lean V4L2 stack → host**           |                                     **~2–8 ms** |   **low to moderate** | Further optimized for reduced scheduling delay and improved determinism                                          |
+| **Consumer USB camera → host**                               |                                  **~50–300 ms** |   **higher**          | Reference only; useful as a consumer baseline, but not suitable for deterministic low-latency vision pipelines   |
 
 ---
 
