@@ -84,7 +84,7 @@ A **direct industrial-camera-to-host path** usually provides the **lowest latenc
 | **ARM node with libcamera → host**                           |                                    **~5–15 ms** |          **moderate** | Flexible and open, but adds software and buffering overhead                                                      |
 | **ARM node with custom lean V4L2 stack → host**              |                                    **~3–10 ms** | **moderate to lower** | Reduced overhead compared to libcamera when optimized                                                            |
 | **ARM node with RTLinux + lean V4L2 stack → host**           |                                     **~2–8 ms** |   **low to moderate** | Further optimized for reduced scheduling delay and improved determinism                                          |
-| **Consumer USB camera → host**                               |                                  **~50–300 ms** |   **higher**          | Reference only; useful as a consumer baseline, but not suitable for deterministic low-latency vision pipelines   |
+| **Consumer USB camera → host**                               |                                  **~50–300 ms** |            **higher** | Reference only; useful as a consumer baseline, but not suitable for deterministic low-latency vision pipelines   |
 
 ---
 
