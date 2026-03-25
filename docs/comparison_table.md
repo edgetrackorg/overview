@@ -175,17 +175,18 @@ This can significantly reduce compute cost in practice while improving determini
 
 **FPGA-based processing** represents another important category. Compared with general-purpose CPUs and GPUs, FPGAs can provide **very low latency**, **high determinism**, and efficient streaming-style processing. They are especially attractive for fixed, high-speed stereo pipelines once the processing architecture has stabilized. The trade-off is significantly higher development complexity and reduced iteration speed compared with software-based CPU pipelines.
 
-| Feature                   | CPU (ARM)       | CPU (High-End Host) | GPU (Host-Side)   | VPU / ASIC (On-Device)                    | FPGA                          |
-| ------------------------- | --------------- | ------------------- | ----------------- | ----------------------------------------- | ----------------------------- |
-| Dense depth efficiency    | ⚠️ Medium       | 🚀 Very high        | 🚀 Very high      | ✅ High                                    | 🚀 Very high                  |
-| 720p @ 30 FPS             | ⚠️ Borderline   | ✅ Stable            | ✅ Stable          | ✅ Stable                                  | ✅ Stable                      |
-| 120 FPS dense             | ❌ Not practical | ⚠️ Possible         | ⚠️ Possible       | ❌ Rare                                    | ✅ Strong potential            |
-| ROI processing            | ✅ Excellent     | ✅ Excellent         | ✅ Strong          | ⚠️ Limited                                | ✅ Excellent                   |
-| Pipeline control          | ✅ Full          | ✅ Full              | ✅ High            | ⚠️ Limited                                | ✅ Very high                   |
-| Multi-rig synchronization | ✅ Ideal         | ⚠️ Complex          | ⚠️ Host-dependent | ⚠️ Limited                                | ✅ Excellent                   |
-| Determinism               | ✅ Good          | ✅ Good              | ⚠️ Moderate       | ✅ Good                                    | 🚀 Excellent                  |
-| Development speed         | ✅ Fast          | ✅ Fast              | ⚠️ Medium         | ✅ Easy to use, limited to vendor pipeline | ❌ Slow / complex              |
-| Flexibility               | ✅ Very high     | ✅ Very high         | ✅ High            | ⚠️ Limited                                | ✅ High, but hardware-specific |
+| Feature                   | CPU (ARM)        | CPU (High-End Host) | GPU (Host-Side)   | VPU / ASIC (On-Device) | FPGA                 |
+| ------------------------- | ---------------- | ------------------- | ----------------- | ---------------------- | ------------------- |
+| Dense depth efficiency    | ⚠️ Medium        | ✅ High             | 🚀 Very high      | ✅ High                | 🚀 Very high        |
+| 720p @ 30 FPS             | ⚠️ Borderline    | ✅ Stable           | 🚀 Excellent      | ✅ Stable              | ✅ Stable           |
+| 120 FPS dense             | ❌ Not practical | ⚠️ Borderline       | 🚀 Excellent      | ❌ Rare                | ✅ Strong potential |
+| ROI processing            | ✅ Excellent     | ✅ Excellent        | 🚀 Excellent      | ⚠️ Limited             | ✅ Excellent        |
+| Pipeline control          | ✅ Full          | ✅ Full             | ✅ High           | ⚠️ Limited             | ✅ Very high        |
+| Multi-rig synchronization | ✅ Ideal         | ⚠️ Complex          | ⚠️ Host-dependent | ⚠️ Limited             | ✅ Excellent        |
+| Determinism               | ✅ Good          | ✅ Good             | ⚠️ Moderate       | ✅ Good                | 🚀 Excellent        |
+| Parallel scaling          | ⚠️ Limited       | ⚠️ Limited          | 🚀 Excellent      | ⚠️ Limited             | 🚀 Excellent        |
+| Development speed         | ✅ Fast          | ✅ Fast             | ⚠️ Medium         | ✅ Easy                | ❌ Slow / complex   |
+| Flexibility               | ✅ Very high     | ✅ Very high        | ✅ High           | ⚠️ Limited             | ✅ High             |
 
 ### Summary
 
