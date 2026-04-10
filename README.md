@@ -298,6 +298,24 @@ Purpose-built devices that **improve ergonomics and precision** (e.g., clutch/co
 
 ---
 
+## 🛠️ Example Use Cases
+
+**What this layer does:**
+
+This layer shows how the stack can be applied across different domains, including **robot grippers, motion capture, 3D scanning, robotics, and workspace perception**.
+
+> Note: These are example application areas built on top of the stack. More use cases will be added over time.
+
+| 🧩 **Module**     | 📝 **Short Description**                                                                                      | ⚖️ **License** | 🚦 **Status** | 🔗 **Link**                                                  |
+|-------------------|---------------------------------------------------------------------------------------------------------------|----------------|----------------|-------------------------------------------------------------|
+| **MoCap**         | **Marker-based motion capture for tracking body, hand, or object movement in 3D space.**                      | Apache-2.0     | 🟠 Later       | [MoCap](https://github.com/edgetrackorg/mocap)              |
+| **3DScan**        | **Multi-view 3D scanning for geometry capture, reconstruction, and measurement.**                             | Apache-2.0     | 🟠 Later       | [3DScan](https://github.com/edgetrackorg/3dscan)            |
+| **PerceptGrid**   | **External multi-camera perception layer for robots, safety monitoring, and shared workspace understanding.** | Apache-2.0     | 🟠 Later       | [PerceptGrid](https://github.com/edgetrackorg/perceptgrid)  |
+
+More modules and application areas will be added over time.
+
+---
+
 ## 🗺️ Roadmap
 
 Coming soon. The project is currently in the research and prototyping phase. 🚀
